@@ -2,6 +2,8 @@ import { Header } from "@/components/header";
 import { Hero } from "@/components/hero";
 import { TrustStrip } from "@/components/trust-strip";
 import { ComoFunciona } from "@/components/como-funciona";
+import { Ventajas } from "@/components/ventajas";
+import { ParaQuien } from "@/components/para-quien";
 import { SeguridadInstitucional } from "@/components/seguridad-institucional";
 import { Oportunidades } from "@/components/oportunidades";
 import { Faq } from "@/components/faq";
@@ -16,6 +18,8 @@ export default function Home() {
         <Hero />
         <TrustStrip />
         <ComoFunciona />
+        <Ventajas />
+        <ParaQuien />
         <SeguridadInstitucional />
         <Oportunidades />
         <Faq />

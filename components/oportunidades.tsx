@@ -80,16 +80,16 @@ export function Oportunidades() {
           {visibles.map((p) => (
             <article
               key={p.titulo}
-              className="overflow-hidden rounded-2xl border border-paper-line bg-paper-50"
+              className="overflow-hidden rounded-[2px] border border-paper-line bg-paper-50 transition-shadow hover:shadow-[0_20px_45px_-30px_rgba(12,23,18,0.5)]"
             >
-              <div className="relative h-56 w-full">
+              <div className="relative aspect-[16/10] w-full">
                 <Image
                   src={p.imagen}
                   alt={p.titulo}
                   fill
                   className="object-cover"
                 />
-                <span className="absolute left-4 top-4 rounded-full bg-paper-50/95 px-3 py-1 text-xs font-semibold text-ink-900">
+                <span className="absolute left-4 top-4 rounded-[2px] bg-paper-50/95 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-ink-900">
                   {p.estado}
                 </span>
               </div>

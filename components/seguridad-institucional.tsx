@@ -74,7 +74,7 @@ export function SeguridadInstitucional() {
               className="hidden text-6xl font-display font-medium md:block"
               style={{ color: "transparent", WebkitTextStroke: "1px rgba(247,242,231,0.15)" }}
             >
-              03
+              04
             </span>
           </div>
         </Reveal>
