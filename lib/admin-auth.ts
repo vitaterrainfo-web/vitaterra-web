@@ -6,8 +6,8 @@
 const SESSION_KEY = "vitaterra_admin_session";
 const SESSION_TTL_MS = 8 * 60 * 60 * 1000; // 8 horas
 
-export const ADMIN_EMAIL = "admin@grupoagro.com.ar";
-export const ADMIN_PASSWORD = "grupoagro2026";
+export const ADMIN_EMAIL = "vitaterra.info@gmail.com";
+export const ADMIN_PASSWORD = "Vitaterra.Grupoagro";
 
 type Session = {
   email: string;
