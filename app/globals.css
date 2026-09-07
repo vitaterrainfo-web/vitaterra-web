@@ -1,29 +1,29 @@
 @import "tailwindcss";
 
 :root {
-  /* Ink greens — deep, almost black, never a flat corporate navy */
-  --color-ink-950: #0c1712;
-  --color-ink-900: #12211a;
-  --color-ink-800: #1b3226;
-  --color-ink-700: #274633;
+  /* Ink — true near-black, no green or brown tint */
+  --color-ink-950: #0a0a0a;
+  --color-ink-900: #141414;
+  --color-ink-800: #1f1f1f;
+  --color-ink-700: #2c2c2c;
 
-  /* Brass — warm metal accent, not a generic yellow-gold */
-  --color-brass-600: #8f6428;
-  --color-brass-500: #ab7b34;
-  --color-brass-400: #c79a52;
-  --color-brass-200: #e8d5ab;
+  /* Brass — rich, saturated gold */
+  --color-brass-600: #9c7a2e;
+  --color-brass-500: #b8952f;
+  --color-brass-400: #d4af6a;
+  --color-brass-200: #ecdcb0;
 
-  /* Clay — terracotta accent pulled from the soil/hacienda imagery */
-  --color-clay-600: #9c4a2c;
-  --color-clay-500: #b25c3a;
+  /* Clay — deep forest green, the private-bank accent */
+  --color-clay-600: #0f2a19;
+  --color-clay-500: #1a4029;
 
-  /* Parchment — warm paper background, never sterile white */
-  --color-paper-50: #f7f2e7;
-  --color-paper-100: #efe7d3;
-  --color-paper-200: #e2d5b4;
-  --color-paper-line: #d9caa3;
-  --color-paper-ink: #241f16;
-  --color-paper-muted: #6b6047;
+  /* Paper — near-white, neutral gray, no warm parchment tint */
+  --color-paper-50: #ffffff;
+  --color-paper-100: #f2f2f0;
+  --color-paper-200: #e4e3df;
+  --color-paper-line: #d6d5cf;
+  --color-paper-ink: #111111;
+  --color-paper-muted: #5c5c58;
 }
 
 @theme inline {
@@ -47,8 +47,8 @@
   --color-paper-ink: var(--color-paper-ink);
   --color-paper-muted: var(--color-paper-muted);
 
-  --font-sans: var(--font-public-sans);
-  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-manrope);
+  --font-display: var(--font-bodoni-moda);
 }
 
 html {

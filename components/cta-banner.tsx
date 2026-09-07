@@ -16,10 +16,13 @@ export function CtaBanner() {
         </div>
         <Link
           href="/#oportunidades"
-          className="inline-flex items-center gap-2 rounded-full bg-ink-950 px-7 py-3.5 text-sm font-semibold text-paper-50 transition-colors hover:bg-ink-900"
+          className="group inline-flex items-center gap-2 rounded-full bg-ink-950 px-7 py-3.5 text-sm font-semibold text-paper-50 transition-all duration-300 hover:-translate-y-0.5 hover:bg-ink-900 hover:shadow-[0_16px_30px_-14px_rgba(0,0,0,0.5)]"
         >
           Ver proyectos
-          <ArrowRight size={16} />
+          <ArrowRight
+            size={16}
+            className="transition-transform group-hover:translate-x-0.5"
+          />
         </Link>
       </div>
     </section>

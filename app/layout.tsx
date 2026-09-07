@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import { Public_Sans, Fraunces } from "next/font/google";
+import { Manrope, Bodoni_Moda } from "next/font/google";
+import { WhatsappButton } from "@/components/whatsapp-button";
 import "./globals.css";
 
-const publicSans = Public_Sans({
-  variable: "--font-public-sans",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
 });
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+const bodoniModa = Bodoni_Moda({
+  variable: "--font-bodoni-moda",
   subsets: ["latin"],
-  axes: ["opsz", "SOFT"],
   weight: "variable",
   style: ["normal", "italic"],
 });
@@ -26,9 +26,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="es"
       data-scroll-behavior="smooth"
-      className={`${publicSans.variable} ${fraunces.variable} antialiased`}
+      className={`${manrope.variable} ${bodoniModa.variable} antialiased`}
     >
-      <body className="min-h-screen flex flex-col">{children}</body>
+      <body className="min-h-screen flex flex-col">
+        {children}
+        <WhatsappButton />
+      </body>
     </html>
   );
 }

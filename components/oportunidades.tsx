@@ -5,12 +5,19 @@ import Link from "next/link";
 import { useState } from "react";
 import { ArrowRight, MapPin } from "lucide-react";
 
-type Categoria = "Todos" | "Desarrollo Agroganadero" | "Flota Automotor";
+type Categoria =
+  | "Todos"
+  | "Desarrollo Agroganadero"
+  | "Flota Automotor"
+  | "Inmobiliario en Pozo"
+  | "Proyecto Vitivinícola";
 
 const CATEGORIAS: Categoria[] = [
   "Todos",
   "Desarrollo Agroganadero",
   "Flota Automotor",
+  "Inmobiliario en Pozo",
+  "Proyecto Vitivinícola",
 ];
 
 const PROYECTOS = [
@@ -24,6 +31,7 @@ const PROYECTOS = [
     presupuestoLabel: "Fondo meta inicial (primer tramo)",
     ciclo: "30 años",
     href: "/oportunidades/agroganadero",
+    ctaLabel: "Ver proyecto y esquema de participación",
     disponible: true,
   },
   {
@@ -31,12 +39,39 @@ const PROYECTOS = [
     estado: "Flota en adquisición",
     titulo: "Fideicomiso Flota Comercial Vita Terra",
     ubicacion: "Operación logística e industrial",
-    imagen: "/images/hero-4.jpeg",
+    imagen: "/images/flota/foto-1.jpeg",
+    presupuesto: "USD 500.000",
+    presupuestoLabel: "Fondo meta inicial",
+    ciclo: "10 años",
+    href: "/oportunidades/flota",
+    ctaLabel: "Ver proyecto y esquema de participación",
+    disponible: true,
+  },
+  {
+    categoria: "Inmobiliario en Pozo" as Categoria,
+    estado: "Próximamente",
+    titulo: "Desarrollo Inmobiliario en Pozo Vita Terra",
+    ubicacion: "Construcción de unidades residenciales",
+    imagen: "/images/inmobiliario/foto-1.jpeg",
     presupuesto: "Próximamente",
     presupuestoLabel: "Ficha técnica en preparación",
     ciclo: "A definir",
-    href: null,
-    disponible: false,
+    href: "/oportunidades/inmobiliario",
+    ctaLabel: "Conocer el modelo y sumarme a la lista de espera",
+    disponible: true,
+  },
+  {
+    categoria: "Proyecto Vitivinícola" as Categoria,
+    estado: "Próximamente",
+    titulo: "Proyecto Vitivinícola Vita Terra",
+    ubicacion: "Región vitivinícola — Argentina",
+    imagen: "/images/vitivinicola/foto-1.jpeg",
+    presupuesto: "Próximamente",
+    presupuestoLabel: "Ficha técnica en preparación",
+    ciclo: "A definir",
+    href: "/oportunidades/vitivinicola",
+    ctaLabel: "Conocer el modelo y sumarme a la lista de espera",
+    disponible: true,
   },
 ];
 
@@ -65,10 +100,10 @@ export function Oportunidades() {
               key={cat}
               type="button"
               onClick={() => setFiltro(cat)}
-              className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+              className={`rounded-full border px-4 py-2 text-sm font-medium transition-all duration-200 ${
                 filtro === cat
                   ? "border-ink-800 bg-ink-800 text-paper-50"
-                  : "border-paper-100/70 bg-paper-50 text-paper-muted hover:border-ink-700"
+                  : "border-paper-100/70 bg-paper-50 text-paper-muted hover:-translate-y-0.5 hover:border-brass-400 hover:text-ink-900"
               }`}
             >
               {cat}
@@ -80,14 +115,14 @@ export function Oportunidades() {
           {visibles.map((p) => (
             <article
               key={p.titulo}
-              className="overflow-hidden rounded-[2px] border border-paper-line bg-paper-50 transition-shadow hover:shadow-[0_20px_45px_-30px_rgba(12,23,18,0.5)]"
+              className="group overflow-hidden rounded-[2px] border border-paper-line bg-paper-50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_50px_-28px_rgba(12,23,18,0.55)]"
             >
-              <div className="relative aspect-[16/10] w-full">
+              <div className="relative aspect-[16/10] w-full overflow-hidden">
                 <Image
                   src={p.imagen}
                   alt={p.titulo}
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
                 />
                 <span className="absolute left-4 top-4 rounded-[2px] bg-paper-50/95 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-ink-900">
                   {p.estado}
@@ -127,7 +162,7 @@ export function Oportunidades() {
                     href={p.href}
                     className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-ink-800 hover:text-brass-600"
                   >
-                    Ver proyecto y esquema de participación
+                    {p.ctaLabel}
                     <ArrowRight size={15} />
                   </Link>
                 ) : (

@@ -24,9 +24,11 @@ export function TrustStrip() {
     <section className="border-b border-paper-line bg-paper-100">
       <div className="mx-auto grid max-w-6xl gap-x-8 gap-y-10 px-6 py-14 md:grid-cols-3 md:px-8">
         {ITEMS.map(({ icon: Icon, title, body }, i) => (
-          <Reveal key={title} delay={i * 100}>
+          <Reveal key={title} delay={i * 100} className="group">
             <div className="flex items-start gap-4">
-              <Icon size={22} className="mt-0.5 shrink-0 text-clay-600" />
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-paper-line text-clay-600 transition-colors group-hover:border-brass-400 group-hover:text-brass-500">
+                <Icon size={18} />
+              </div>
               <div>
                 <h3 className="font-display text-lg font-medium text-ink-900">
                   {title}

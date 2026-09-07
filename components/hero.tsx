@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "./reveal";
 
@@ -14,29 +14,56 @@ const SLIDES = [
 ];
 
 export function Hero() {
-  const [active, setActive] = useState(1);
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setActive((i) => (i + 1) % SLIDES.length);
+    }, 5000);
+    return () => clearInterval(id);
+  }, []);
 
   return (
-    <section className="relative overflow-hidden border-b border-paper-line bg-paper-50">
-      <div className="grain absolute inset-0" />
+    <section className="relative isolate flex min-h-[88vh] items-center overflow-hidden bg-ink-950">
+      {SLIDES.map((slide, i) => (
+        <Image
+          key={slide.src}
+          src={slide.src}
+          alt={slide.label}
+          fill
+          priority={i === 0}
+          className={`object-cover transition-opacity duration-1000 ease-out ${
+            i === active ? "opacity-100" : "opacity-0"
+          }`}
+        />
+      ))}
 
-      <div className="relative mx-auto grid max-w-6xl gap-14 px-6 py-20 md:grid-cols-[1.05fr_1fr] md:items-center md:px-8 md:py-28">
+      <div className="absolute inset-0 bg-gradient-to-r from-ink-950/95 via-ink-950/75 to-ink-950/30" />
+      <div className="absolute inset-0 bg-gradient-to-t from-ink-950/70 via-transparent to-transparent" />
+
+      <Image
+        src="/images/logo-vitaterra.jpeg"
+        alt=""
+        width={1100}
+        height={1100}
+        aria-hidden
+        className="pointer-events-none absolute -right-40 top-1/2 w-[1100px] max-w-none -translate-y-1/2 opacity-[0.07] brightness-0 invert"
+      />
+
+      <div className="relative mx-auto w-full max-w-6xl px-6 md:px-8">
         <Reveal>
-          <span className="index-mark text-7xl leading-none md:text-8xl">
-            01
-          </span>
-          <p className="mt-2 text-xs font-semibold uppercase tracking-[0.25em] text-brass-600">
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brass-400">
             Economía real &amp; productiva
           </p>
 
-          <h1 className="mt-5 max-w-xl font-display text-4xl font-medium leading-[1.08] text-ink-900 md:text-[3.4rem]">
+          <h1 className="mt-5 max-w-xl font-display text-4xl font-medium leading-[1.08] text-paper-50 md:text-[3.4rem]">
             Participá en fideicomisos{" "}
-            <span className="font-display italic text-clay-600">
+            <span className="font-display italic text-brass-300">
               sin complicaciones.
             </span>
           </h1>
 
-          <p className="mt-6 max-w-md text-[1.05rem] leading-relaxed text-paper-muted">
+          <p className="mt-6 max-w-md text-[1.05rem] leading-relaxed text-paper-100/75">
             Adquirí participación en desarrollos inmobiliarios, producción
             agroganadera, proyecto vitivinícola y flotas comerciales,
             mediante contratos privados respaldados por activos reales.
@@ -45,9 +72,9 @@ export function Hero() {
           <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">
             <Link
               href="/#oportunidades"
-              className="group inline-flex items-center gap-2 border-b-2 border-ink-900 pb-1 text-sm font-semibold text-ink-900 transition-colors hover:border-clay-600 hover:text-clay-600"
+              className="group inline-flex items-center gap-2.5 rounded-[2px] bg-brass-500 px-7 py-3.5 text-sm font-semibold text-ink-950 shadow-[0_16px_30px_-14px_rgba(184,149,47,0.6)] transition-colors hover:bg-brass-400"
             >
-              Explorar proyectos
+              Adherir Ahora
               <ArrowUpRight
                 size={16}
                 className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
@@ -55,66 +82,41 @@ export function Hero() {
             </Link>
             <Link
               href="/#como-funciona"
-              className="text-sm font-medium text-paper-muted transition-colors hover:text-ink-900"
+              className="text-sm font-medium text-paper-100/70 transition-colors hover:text-paper-50"
             >
               Cómo funciona
             </Link>
           </div>
         </Reveal>
 
-        <Reveal delay={150}>
-          <div className="relative">
-            <div className="absolute -right-3 -top-3 h-full w-full rounded-[2px] border border-brass-400/60 md:-right-4 md:-top-4" />
-            <div
-              className="relative h-80 w-full overflow-hidden rounded-[2px] shadow-[0_30px_60px_-25px_rgba(12,23,18,0.45)] md:h-[420px]"
-              style={{
-                clipPath:
-                  "polygon(0 0, 100% 0, 100% 100%, 12% 100%, 0 88%)",
-              }}
+        <div className="mt-14 flex items-center gap-3">
+          {SLIDES.map((slide, i) => (
+            <button
+              key={slide.src}
+              type="button"
+              onClick={() => setActive(i)}
+              aria-label={slide.label}
+              className="group flex items-center gap-2"
             >
-              {SLIDES.map((slide, i) => (
-                <Image
-                  key={slide.src}
-                  src={slide.src}
-                  alt={slide.label}
-                  fill
-                  priority={i === active}
-                  className={`object-cover transition-opacity duration-700 ${
-                    i === active ? "opacity-100" : "opacity-0"
-                  }`}
-                />
-              ))}
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink-950/70 to-transparent p-5">
-                <p className="font-display text-sm text-paper-50">
-                  {SLIDES[active].label}
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-5 flex gap-2">
-              {SLIDES.map((slide, i) => (
-                <button
-                  key={slide.src}
-                  type="button"
-                  onClick={() => setActive(i)}
-                  aria-label={slide.label}
-                  className={`relative h-14 flex-1 overflow-hidden rounded-[2px] transition-opacity ${
-                    i === active
-                      ? "opacity-100 ring-1 ring-brass-500"
-                      : "opacity-50 hover:opacity-80"
-                  }`}
-                >
-                  <Image
-                    src={slide.src}
-                    alt=""
-                    fill
-                    className="object-cover"
-                  />
-                </button>
-              ))}
-            </div>
-          </div>
-        </Reveal>
+              <span
+                className={`h-1.5 rounded-full transition-all ${
+                  i === active
+                    ? "w-8 bg-brass-400"
+                    : "w-1.5 bg-paper-50/30 group-hover:bg-paper-50/60"
+                }`}
+              />
+              <span
+                className={`hidden text-xs transition-colors sm:inline ${
+                  i === active
+                    ? "text-paper-50"
+                    : "text-paper-100/40 group-hover:text-paper-100/70"
+                }`}
+              >
+                {slide.label}
+              </span>
+            </button>
+          ))}
+        </div>
       </div>
     </section>
   );

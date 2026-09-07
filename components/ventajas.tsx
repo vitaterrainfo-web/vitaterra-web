@@ -33,14 +33,19 @@ export function Ventajas() {
                 La ventaja de trabajar con nosotros
               </h2>
             </div>
-            <span className="index-mark hidden text-6xl md:block">03</span>
           </div>
         </Reveal>
 
-        <div className="mt-14 grid gap-10 md:grid-cols-3 md:gap-x-10">
+        <div className="mt-14 grid gap-6 md:grid-cols-3">
           {VENTAJAS.map(({ icon: Icon, title, body }, i) => (
-            <Reveal key={title} delay={i * 100}>
-              <Icon size={24} className="text-clay-600" />
+            <Reveal
+              key={title}
+              delay={i * 100}
+              className="group rounded-[2px] border border-paper-line bg-paper-50 p-7 transition-all duration-300 hover:-translate-y-1 hover:border-brass-400/50 hover:shadow-[0_20px_40px_-28px_rgba(12,23,18,0.4)]"
+            >
+              <div className="flex h-11 w-11 items-center justify-center rounded-full border border-paper-line text-clay-600 transition-colors group-hover:border-brass-400 group-hover:text-brass-500">
+                <Icon size={20} />
+              </div>
               <h3 className="mt-4 font-display text-lg font-medium text-ink-900">
                 {title}
               </h3>

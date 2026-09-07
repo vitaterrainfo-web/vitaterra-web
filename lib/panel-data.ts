@@ -53,7 +53,7 @@ export const FIDEICOMISOS: Fideicomiso[] = [
     nombre: "Fideicomiso Flota Comercial Vita Terra",
     categoria: "Flota Automotor",
     estado: "Flota en adquisición",
-    imagen: "/images/hero-4.jpeg",
+    imagen: "/images/flota/foto-1.jpeg",
     presupuestoMeta: 500_000,
     moneda: "USD",
     ciclo: "10 años",

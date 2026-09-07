@@ -4,11 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import {
-  Building2,
-  PiggyBank,
-  Beef,
-  Warehouse,
-  Link2,
+  Truck,
+  Briefcase,
+  Wrench,
+  Layers,
+  RefreshCw,
   ArrowRight,
   CheckCircle2,
 } from "lucide-react";
@@ -21,76 +21,70 @@ import { HitosTimeline, type Hito } from "@/components/hitos-timeline";
 import { FIDEICOMISOS, formatUsd } from "@/lib/panel-data";
 
 const fideicomiso = FIDEICOMISOS.find(
-  (f) => f.id === "agroganadero-vitaterra-i"
+  (f) => f.id === "flota-comercial-vitaterra"
 )!;
 
 const PILARES = [
   {
-    icon: Building2,
+    icon: Truck,
     title: "Respaldo Patrimonial Tangible",
-    body: "Adquisición de 100 a 150 hectáreas propias como activo base del fideicomiso, brindando sólida cobertura de valor en tierra agrícola de alta productividad.",
+    body: "Adquisición progresiva de utilitarios y camionetas 0km, activos tangibles con valor de reventa consolidado en el mercado automotor comercial.",
   },
   {
-    icon: PiggyBank,
-    title: "Escalamiento Porcino Progresivo",
-    body: "Desarrollo tecnificado modular con proyección de hasta 2.000 cerdas madres en ciclo completo, sumado al esquema de engorde ágil para optimización del flujo operativo.",
+    icon: Briefcase,
+    title: "Contratos de Logística Corporativa",
+    body: "Explotación comercial mediante contratos de alquiler y transporte con empresas de logística, distribución y servicios de la región.",
   },
   {
-    icon: Beef,
-    title: "Feedlot Bovino Integrado",
-    body: "Módulo de engorde a corral para hacienda vacuna, aprovechando la capacidad instalada del establecimiento y diversificando las líneas de comercialización.",
+    icon: Wrench,
+    title: "Mantenimiento y Seguro Integral",
+    body: "Gestión centralizada de service oficial, seguros contra todo riesgo y protocolos de mantenimiento preventivo para sostener el valor de cada unidad.",
   },
   {
-    icon: Warehouse,
-    title: "Soberanía e Infraestructura de Acopio",
-    body: "Planta de silos y capacidad de almacenamiento propia para el resguardo de granos (maíz/soja), reduciendo costos operativos de alimentación y optimizando márgenes.",
+    icon: Layers,
+    title: "Diversificación de Marcas y Modelos",
+    body: "Selección de utilitarios y camionetas de alta rotación en el mercado de reventa, reduciendo el riesgo de concentración en una sola marca.",
   },
   {
-    icon: Link2,
-    title: "Integración Vertical y Red de Distribución Propia",
-    body: "Capturamos el valor total de la cadena: producimos, procesamos y comercializamos sin intermediarios, reteniendo el margen minorista de la carne y maximizando el flujo de caja y la rentabilidad neta del fideicomiso.",
+    icon: RefreshCw,
+    title: "Escalamiento y Rotación de Unidades",
+    body: "Reinversión de resultados en la incorporación de nuevas unidades y renovación programada de las de mayor kilometraje.",
   },
 ];
 
 const HITOS: Hito[] = [
   {
-    fecha: "Julio 2026",
-    titulo: "Adquisición del campo productivo",
-    body: "Compra de 100 a 150 hectáreas propias e instalación del primer núcleo de recría y engorde bovino y porcino.",
-    estado: "confirmado",
-  },
-  {
     fecha: "Agosto 2026",
-    titulo: "Apertura del primer punto de venta",
-    body: "Primera carnicería de la red de distribución propia, operativa y comercializando sin intermediarios.",
+    titulo: "Compra de las primeras unidades",
+    body: "Adquisición de las primeras camionetas utilitarias 0km para dar inicio a la operación comercial.",
     estado: "confirmado",
   },
   {
     fecha: "Septiembre 2026",
-    titulo: "Inicio de obra de la planta de acopio",
-    body: "Comienza la construcción de la planta de silos para el almacenamiento propio de granos.",
+    titulo: "Primeros contratos de logística",
+    body: "Firma de los primeros contratos de logística corporativa con empresas de la región.",
     estado: "confirmado",
   },
   {
     fecha: "Año 2",
-    titulo: "Duplicación del plantel ganadero",
-    body: "Expansión productiva y ampliación de sucursales de la red de distribución propia.",
+    titulo: "Ampliación de la flota",
+    body: "Diversificación de contratos con nuevas empresas cliente.",
     estado: "proyectado",
   },
   {
-    fecha: "Años 3 y 4",
-    titulo: "Planta de acopio en pleno funcionamiento",
-    body: "Abastecimiento nutricional propio y reducción de costos operativos de alimentación.",
+    fecha: "Años 3 a 6",
+    titulo: "Consolidación operativa",
+    body: "Monitoreo satelital y gestión centralizada de mantenimiento de toda la flota.",
     estado: "proyectado",
   },
   {
-    fecha: "Año 5 en adelante",
-    titulo: "Consolidación agroindustrial",
-    body: "Complejo integrado de producción, procesamiento y venta, con monitoreo 100% automatizado por IA.",
+    fecha: "Año 7 en adelante",
+    titulo: "Rotación continua de unidades",
+    body: "Capacidad máxima bajo contratos de logística de largo plazo, con renovación programada de vehículos.",
     estado: "proyectado",
   },
   {
-    fecha: "Año 30",
+    fecha: "Año 10",
     titulo: "Liquidación o renovación del fideicomiso",
     body: "Cierre del ciclo contractual proyectado y distribución final de resultados a los fiduciantes.",
     estado: "proyectado",
@@ -100,51 +94,46 @@ const HITOS: Hito[] = [
 const CAPITALIZACION = [
   {
     periodo: "Años 1 y 2",
-    subtitulo: "Fase de crecimiento",
+    subtitulo: "Fase de puesta en marcha",
     filas: [
-      { label: "Distribución periódica de utilidades líquidas", valor: "60%" },
-      {
-        label: "Reinversión operativa directa (infraestructura / CapEx)",
-        valor: "30%",
-      },
+      { label: "Distribución periódica de utilidades líquidas", valor: "55%" },
+      { label: "Reinversión en adquisición de unidades", valor: "35%" },
       { label: "Fondo de reserva y liquidez", valor: "10%" },
     ],
   },
   {
-    periodo: "Años 3 y 4",
+    periodo: "Años 3 a 6",
     subtitulo: "Fase de consolidación",
     filas: [
       { label: "Distribución periódica de utilidades líquidas", valor: "65%" },
-      { label: "Reinversión operativa directa", valor: "30%" },
-      { label: "Fondo de reserva y liquidez", valor: "5%" },
+      { label: "Reinversión operativa directa", valor: "25%" },
+      { label: "Fondo de reserva y liquidez", valor: "10%" },
     ],
   },
   {
-    periodo: "Año 5 en adelante",
+    periodo: "Año 7 en adelante",
     subtitulo: "Fase madura",
     filas: [
       { label: "Distribución periódica de utilidades líquidas", valor: "70%" },
-      { label: "Mantenimiento y actualización tecnológica", valor: "25%" },
+      { label: "Mantenimiento y renovación de flota", valor: "25%" },
       { label: "Fondo de reserva y liquidez", valor: "5%" },
     ],
   },
 ];
 
 const RENDIMIENTO = [
-  { periodo: "Años 1 y 2", rango: "10,0% – 15,0% Anual en USD" },
-  { periodo: "Años 3 y 4", rango: "14,0% – 20,0% Anual en USD" },
-  { periodo: "Año 5 en adelante", rango: "18,0% – 22,0% Anual en USD" },
+  { periodo: "Años 1 y 2", rango: "8,0% – 12,0% Anual en USD" },
+  { periodo: "Años 3 a 6", rango: "12,0% – 16,0% Anual en USD" },
+  { periodo: "Año 7 en adelante", rango: "14,0% – 18,0% Anual en USD" },
 ];
 
 const GALERIA = [
-  "/images/agroganadero/foto-1.jpeg",
-  "/images/agroganadero/foto-2.jpeg",
-  "/images/agroganadero/foto-3.jpeg",
-  "/images/agroganadero/foto-4.jpeg",
-  "/images/agroganadero/foto-5.jpeg",
+  "/images/flota/foto-1.jpeg",
+  "/images/flota/foto-2.jpeg",
+  "/images/flota/foto-3.jpeg",
 ];
 
-export default function AgroganaderoPage() {
+export default function FlotaPage() {
   const [form, setForm] = useState({
     nombre: "",
     email: "",
@@ -169,8 +158,8 @@ export default function AgroganaderoPage() {
       <main>
         <section className="relative flex min-h-[70vh] items-end overflow-hidden bg-ink-950">
           <Image
-            src="/images/agroganadero/foto-1.jpeg"
-            alt="Fideicomiso Agro Ganadero Vita Terra"
+            src="/images/flota/foto-1.jpeg"
+            alt="Fideicomiso Flota Comercial Vita Terra"
             fill
             priority
             className="object-cover opacity-60"
@@ -184,15 +173,15 @@ export default function AgroganaderoPage() {
               ← Volver a oportunidades
             </Link>
             <p className="mt-6 text-xs font-semibold uppercase tracking-[0.25em] text-brass-400">
-              Desarrollo Agroganadero
+              Flota Automotor
             </p>
             <h1 className="mt-3 max-w-3xl font-display text-4xl font-medium text-paper-50 md:text-5xl">
-              Fideicomiso Privado <span className="italic">Agro Ganadero Vita Terra</span>
+              Fideicomiso <span className="italic">Flota Comercial Vita Terra</span>
             </h1>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-paper-100/80">
-              Plataforma de desarrollo agro productivo orientada al
-              escalamiento de infraestructura, acopio estratégico de granos y
-              producción integral de proteína animal.
+              Plataforma de explotación comercial de una flota de vehículos
+              utilitarios orientada a contratos de logística y transporte
+              corporativo.
             </p>
             <p className="mt-5 max-w-2xl text-xs text-paper-100/60">
               Administrado y auditado por Grupo Agro SRL en su carácter de
@@ -253,7 +242,7 @@ export default function AgroganaderoPage() {
                   Pilares del proyecto
                 </span>
                 <h2 className="mt-3 font-display text-3xl font-medium text-ink-900 md:text-4xl">
-                  Cinco frentes de desarrollo productivo
+                  Cinco frentes de operación logística
                 </h2>
               </div>
             </Reveal>
@@ -314,9 +303,9 @@ export default function AgroganaderoPage() {
             <Reveal delay={80}>
               <div className="mt-10">
                 <MapEmbed
-                  lat={-33.8961}
-                  lon={-60.5695}
-                  label="Zona rural — Pergamino, Buenos Aires"
+                  lat={-34.69}
+                  lon={-58.7}
+                  label="Zona logística — Gran Buenos Aires"
                 />
               </div>
             </Reveal>
@@ -373,8 +362,8 @@ export default function AgroganaderoPage() {
                 </h3>
                 <p className="mt-2 max-w-3xl text-sm leading-relaxed text-paper-muted">
                   Los valores expuestos representan proyecciones basadas en el
-                  plan de producción y eficiencias históricas de la actividad
-                  en la región.
+                  plan de operación comercial y eficiencias históricas del
+                  mercado de transporte y logística.
                 </p>
                 <div className="mt-6 overflow-x-auto rounded-[2px] border border-paper-line">
                   <table className="w-full min-w-[520px] text-left text-sm">
@@ -410,8 +399,8 @@ export default function AgroganaderoPage() {
                   />
                   Respaldo en economía real: el fiduciante no ingresa a un
                   producto financiero abstracto, sino que participa
-                  proporcionalmente de un fideicomiso respaldado por tierras,
-                  biomasa en crecimiento e infraestructura agroindustrial.
+                  proporcionalmente de un fideicomiso respaldado por
+                  vehículos utilitarios y contratos comerciales de logística.
                 </p>
               </div>
             </Reveal>
@@ -426,7 +415,7 @@ export default function AgroganaderoPage() {
                   Galería
                 </span>
                 <h2 className="mt-3 font-display text-3xl font-medium text-ink-900 md:text-4xl">
-                  El proyecto en el terreno
+                  La flota en operación
                 </h2>
               </div>
             </Reveal>
@@ -434,7 +423,7 @@ export default function AgroganaderoPage() {
               <div className="mt-10">
                 <Carousel
                   images={GALERIA}
-                  alt="Fideicomiso Agro Ganadero Vita Terra"
+                  alt="Fideicomiso Flota Comercial Vita Terra"
                 />
               </div>
             </Reveal>
@@ -460,7 +449,7 @@ export default function AgroganaderoPage() {
               />
               <ModeloItem
                 label="Horizonte operativo"
-                valor="Proyecto proyectado a 30 años (empresa en marcha con distribución periódica de utilidades netas operativas)."
+                valor="Proyecto proyectado a 10 años (empresa en marcha con distribución periódica de utilidades netas operativas)."
               />
               <ModeloItem
                 label="Esquema de salida / liquidación"
@@ -482,7 +471,7 @@ export default function AgroganaderoPage() {
                   Solicitar adhesión
                 </span>
                 <h2 className="mt-3 font-display text-3xl font-medium text-paper-50 md:text-4xl">
-                  Sumate al proyecto
+                  Sumate a la flota
                 </h2>
                 <p className="mt-3 text-sm leading-relaxed text-paper-100/70">
                   Dejanos tus datos y un asesor de Grupo Agro SRL te va a

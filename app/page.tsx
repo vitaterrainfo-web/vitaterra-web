@@ -1,5 +1,6 @@
 import { Header } from "@/components/header";
 import { Hero } from "@/components/hero";
+import { KpisStrip } from "@/components/kpis-strip";
 import { TrustStrip } from "@/components/trust-strip";
 import { ComoFunciona } from "@/components/como-funciona";
 import { Ventajas } from "@/components/ventajas";
@@ -16,6 +17,7 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <KpisStrip />
         <TrustStrip />
         <ComoFunciona />
         <Ventajas />

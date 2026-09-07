@@ -30,18 +30,21 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-6 py-16 md:px-8">
         <div className="grid gap-12 md:grid-cols-3">
           <div>
-            <div className="flex items-center gap-2">
+            <Link
+              href="/"
+              className="group flex items-center gap-2.5 transition-opacity hover:opacity-80"
+            >
               <Image
                 src="/images/logo-vitaterra.jpeg"
                 alt="Vitaterra"
                 width={32}
                 height={32}
-                className="rounded-full object-cover"
+                className="rounded-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
-              <span className="font-display text-lg font-semibold text-paper-50">
+              <span className="font-display text-lg font-semibold uppercase tracking-[0.06em] text-paper-50">
                 Vitaterra
               </span>
-            </div>
+            </Link>
             <p className="mt-4 text-sm leading-relaxed text-paper-100/60">
               En Vitaterra transformamos la forma de participar en los
               sectores más sólidos de la economía real. Somos una plataforma
@@ -56,14 +59,14 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-paper-50/15 text-paper-100/70 transition-colors hover:border-brass-400 hover:text-brass-400"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-paper-50/15 text-paper-100/70 transition-all duration-300 hover:scale-110 hover:border-brass-400 hover:text-brass-400"
               >
                 <InstagramIcon />
               </a>
               <a
                 href={`mailto:${siteConfig.email}`}
                 aria-label="Email"
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-paper-50/15 text-paper-100/70 transition-colors hover:border-brass-400 hover:text-brass-400"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-paper-50/15 text-paper-100/70 transition-all duration-300 hover:scale-110 hover:border-brass-400 hover:text-brass-400"
               >
                 <Mail size={16} />
               </a>

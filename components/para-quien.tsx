@@ -39,9 +39,11 @@ export function ParaQuien() {
             <Reveal
               key={title}
               delay={i * 100}
-              className="rounded-[2px] border border-paper-line bg-paper-100/60 p-7"
+              className="group rounded-[2px] border border-paper-line bg-paper-100/60 p-7 transition-all duration-300 hover:-translate-y-1 hover:border-brass-400/50 hover:bg-paper-50 hover:shadow-[0_20px_40px_-28px_rgba(12,23,18,0.4)]"
             >
-              <Icon size={22} className="text-ink-800" />
+              <div className="flex h-11 w-11 items-center justify-center rounded-full border border-paper-line text-ink-800 transition-colors group-hover:border-brass-400 group-hover:text-brass-500">
+                <Icon size={20} />
+              </div>
               <h3 className="mt-4 font-display text-lg font-medium text-ink-900">
                 {title}
               </h3>

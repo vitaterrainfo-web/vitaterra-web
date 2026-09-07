@@ -42,19 +42,18 @@ export function ComoFunciona() {
                 Nuestro modelo de economía real
               </h2>
             </div>
-            <span className="index-mark hidden text-6xl md:block">02</span>
           </div>
         </Reveal>
 
         <div className="mt-4 grid divide-y divide-paper-line md:grid-cols-2 md:divide-x md:divide-y-0">
           {STEPS.map(({ icon: Icon, title, body, n }, i) => (
-            <Reveal key={title} delay={i * 90}>
-              <div className="flex gap-5 py-8 md:px-8">
+            <Reveal key={title} delay={i * 90} className="group">
+              <div className="flex gap-5 py-8 transition-colors duration-300 md:px-8 md:group-hover:bg-paper-100/60">
                 <div className="shrink-0">
                   <span className="font-display text-sm text-brass-600">
                     {n}
                   </span>
-                  <div className="mt-3 flex h-10 w-10 items-center justify-center rounded-full border border-paper-line text-ink-800">
+                  <div className="mt-3 flex h-10 w-10 items-center justify-center rounded-full border border-paper-line text-ink-800 transition-colors group-hover:border-brass-400 group-hover:text-brass-500">
                     <Icon size={17} />
                   </div>
                 </div>

@@ -32,6 +32,33 @@ const PILARES = [
   },
 ];
 
+const PROCESO = [
+  {
+    titulo: "Vitaterra estructura el fideicomiso",
+    body: "Se define el proyecto productivo, el presupuesto y la cantidad de Módulos de Adhesión disponibles.",
+  },
+  {
+    titulo: "Un fiduciario independiente administra los bienes",
+    body: "Grupo Agro SRL toma la titularidad fiduciaria de los activos del proyecto bajo un patrimonio separado y auditable.",
+  },
+  {
+    titulo: "Los participantes adhieren mediante contrato digital",
+    body: "Cada fiduciante firma electrónicamente su Acta de Adhesión y aporta capital directo a la cuenta del fideicomiso.",
+  },
+  {
+    titulo: "Los resultados se distribuyen según el reglamento",
+    body: "La actividad productiva genera resultados que se calculan y distribuyen periódicamente según la política de capitalización de cada proyecto.",
+  },
+  {
+    titulo: "Al finalizar el plazo, se liquida o renueva el fideicomiso",
+    body: "Se realiza la liquidación de los activos o se define la continuidad del proyecto según lo previsto en el reglamento.",
+  },
+  {
+    titulo: "Los participantes reciben su parte proporcional",
+    body: "El resultado final se distribuye entre los fiduciantes en proporción a sus Módulos de Adhesión.",
+  },
+];
+
 const BENEFICIOS = [
   {
     title: "Patrimonio inembargable",
@@ -70,18 +97,16 @@ export function SeguridadInstitucional() {
                 patrimonio del proyecto.
               </p>
             </div>
-            <span
-              className="hidden text-6xl font-display font-medium md:block"
-              style={{ color: "transparent", WebkitTextStroke: "1px rgba(247,242,231,0.15)" }}
-            >
-              04
-            </span>
           </div>
         </Reveal>
 
         <div className="mt-14 grid gap-px overflow-hidden rounded-[2px] border border-paper-50/10 bg-paper-50/10 md:grid-cols-3">
           {PILARES.map(({ icon: Icon, title, subtitle, points }, i) => (
-            <Reveal key={title} delay={i * 100} className="bg-ink-950 p-7">
+            <Reveal
+              key={title}
+              delay={i * 100}
+              className="bg-ink-950 p-7 transition-colors duration-300 hover:bg-ink-900"
+            >
               <Icon size={20} className="text-brass-400" />
               <h3 className="mt-4 font-display text-lg font-medium text-paper-50">
                 {title}
@@ -103,13 +128,51 @@ export function SeguridadInstitucional() {
           ))}
         </div>
 
+        <div className="mt-20">
+          <h3 className="font-display text-xl font-medium text-paper-50">
+            El proceso de Vitaterra
+          </h3>
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-paper-100/70">
+            La mecánica jurídica detrás de cada fideicomiso, paso a paso.
+          </p>
+
+          <div className="mt-8 space-y-0">
+            {PROCESO.map((step, i) => (
+              <Reveal key={step.titulo} delay={i * 70}>
+                <div className="flex gap-5">
+                  <div className="flex flex-col items-center">
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-brass-400/50 font-display text-sm text-brass-400">
+                      {i + 1}
+                    </div>
+                    {i < PROCESO.length - 1 && (
+                      <div className="w-px flex-1 bg-paper-50/15" />
+                    )}
+                  </div>
+                  <div className="pb-8">
+                    <h4 className="font-display text-base font-medium text-paper-50">
+                      {step.titulo}
+                    </h4>
+                    <p className="mt-1.5 max-w-xl text-sm leading-relaxed text-paper-100/70">
+                      {step.body}
+                    </p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
         <div className="mt-16">
           <h3 className="font-display text-xl font-medium text-paper-50">
             ¿Por qué hacerte socio con nuestro esquema fiduciario?
           </h3>
           <div className="mt-6 grid gap-px overflow-hidden rounded-[2px] border border-paper-50/10 bg-paper-50/10 md:grid-cols-3">
             {BENEFICIOS.map((b, i) => (
-              <Reveal key={b.title} delay={i * 90} className="bg-ink-900/60 p-6">
+              <Reveal
+                key={b.title}
+                delay={i * 90}
+                className="bg-ink-900/60 p-6 transition-colors duration-300 hover:bg-ink-900"
+              >
                 <h4 className="font-display text-base font-medium text-brass-400">
                   {b.title}
                 </h4>
