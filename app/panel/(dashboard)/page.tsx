@@ -2,15 +2,17 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Wallet, TrendingUp, FolderKanban, ArrowUpRight } from "lucide-react";
+import { Wallet, TrendingUp, FolderKanban, Gauge, ArrowUpRight } from "lucide-react";
 import {
   FIDEICOMISOS,
   FIDUCIANTE_DEMO,
+  FIDEICOMISO_SLUGS,
   formatUsd,
 } from "@/lib/panel-data";
 import { getSessionNombre } from "@/lib/panel-auth";
+import { LineChart, DonutChart } from "@/components/panel/charts";
 
-export default function PanelResumenPage() {
+export default function PanelInversionesPage() {
   const [nombre, setNombre] = useState(FIDUCIANTE_DEMO.nombre);
 
   useEffect(() => {
@@ -33,21 +35,56 @@ export default function PanelResumenPage() {
         (p.modulos / p.fideicomiso.modulosAdjudicados) || 0),
     0
   );
+  const avanceFisicoPromedio = participaciones.length
+    ? Math.round(
+        participaciones.reduce(
+          (acc, p) => acc + p.fideicomiso.avanceFisico * (p.modulos * p.fideicomiso.valorModulo),
+          0
+        ) / (capitalAdjudicado || 1)
+      )
+    : 0;
+
+  // Evolución del avance físico del fideicomiso con mayor capital aportado.
+  const principal = participaciones
+    .slice()
+    .sort(
+      (a, b) =>
+        b.modulos * b.fideicomiso.valorModulo - a.modulos * a.fideicomiso.valorModulo
+    )[0];
+  const evolucion =
+    principal?.fideicomiso.actualizaciones.map((a) => ({
+      label: a.mes.split(" ")[0].slice(0, 3),
+      value: a.avance,
+    })) ?? [];
+
+  const distribucion = participaciones.map((p) => ({
+    label: p.fideicomiso.nombre,
+    value: p.modulos * p.fideicomiso.valorModulo,
+  }));
+
+  const actualizaciones = participaciones
+    .flatMap((p) =>
+      p.fideicomiso.actualizaciones.map((a) => ({
+        ...a,
+        fideicomiso: p.fideicomiso.nombre,
+      }))
+    )
+    .reverse();
 
   return (
-    <div className="p-8">
+    <div>
       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brass-600">
-        Mi perfil de fiduciante
+        Mis inversiones
       </p>
       <h1 className="mt-1.5 font-display text-2xl font-medium text-ink-900">
         Hola, {nombre.split(" ")[0]}
       </h1>
       <p className="mt-1 text-sm text-paper-muted">
-        Seguimiento de tu participación en los fideicomisos privados de
+        Panel consolidado de tu participación en los fideicomisos privados de
         Vitaterra.
       </p>
 
-      <div className="mt-8 grid gap-px overflow-hidden rounded-[2px] border border-paper-line bg-paper-line md:grid-cols-3">
+      <div className="mt-8 grid gap-px overflow-hidden rounded-[2px] border border-paper-line bg-paper-line sm:grid-cols-2 lg:grid-cols-4">
         <StatCard
           icon={Wallet}
           label="Capital adjudicado"
@@ -59,18 +96,23 @@ export default function PanelResumenPage() {
           value={formatUsd(Math.round(resultadosDistribuidos))}
         />
         <StatCard
+          icon={Gauge}
+          label="Avance físico promedio"
+          value={`${avanceFisicoPromedio}%`}
+        />
+        <StatCard
           icon={FolderKanban}
-          label="Proyectos activos"
+          label="Fideicomisos activos"
           value={String(participaciones.length)}
         />
       </div>
 
       <div className="mt-10 flex items-center justify-between">
         <h2 className="font-display text-lg font-medium text-ink-900">
-          Mis proyectos
+          Mis fideicomisos activos
         </h2>
         <Link
-          href="/panel/proyectos"
+          href="/panel/fideicomisos"
           className="group inline-flex items-center gap-1.5 text-xs font-semibold text-ink-900 hover:text-brass-600"
         >
           Ver todos
@@ -81,33 +123,114 @@ export default function PanelResumenPage() {
         </Link>
       </div>
 
-      <div className="mt-4 grid gap-4 md:grid-cols-2">
+      <div className="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {participaciones.map(({ fideicomiso, modulos }) => (
           <div
             key={fideicomiso.id}
             className="rounded-[2px] border border-paper-line bg-paper-50 p-5 transition-shadow hover:shadow-[0_16px_30px_-20px_rgba(12,23,18,0.35)]"
           >
-            <p className="text-xs font-medium uppercase tracking-wide text-paper-muted">
-              {fideicomiso.categoria}
-            </p>
-            <p className="mt-1.5 font-display text-lg font-medium text-ink-900">
+            <div className="flex items-start justify-between gap-2">
+              <p className="text-xs font-medium uppercase tracking-wide text-paper-muted">
+                {fideicomiso.categoria}
+              </p>
+              <span className="shrink-0 rounded-[2px] border border-brass-500/40 bg-brass-200/30 px-2 py-0.5 text-[11px] font-semibold text-brass-600">
+                {fideicomiso.avanceFisico}%
+              </span>
+            </div>
+            <p className="mt-1.5 font-display text-base font-medium text-ink-900">
               {fideicomiso.nombre}
             </p>
-            <p className="mt-2 text-sm text-paper-muted">
-              {modulos} módulos adjudicados ·{" "}
-              {formatUsd(modulos * fideicomiso.valorModulo)}
+            <p className="mt-3 text-sm text-paper-muted">
+              {modulos} módulos · {formatUsd(modulos * fideicomiso.valorModulo)}
             </p>
-            <div className="mt-4 h-1.5 w-full overflow-hidden rounded-full bg-paper-200">
-              <div
-                className="h-full rounded-full bg-brass-500"
-                style={{ width: `${fideicomiso.avanceFisico}%` }}
-              />
-            </div>
-            <p className="mt-1.5 text-xs text-paper-muted">
-              {fideicomiso.avanceFisico}% de avance físico del proyecto
+            <p className="text-xs text-paper-muted">
+              Ciclo: {fideicomiso.ciclo}
             </p>
+            {FIDEICOMISO_SLUGS[fideicomiso.id] && (
+              <Link
+                href={`/oportunidades/${FIDEICOMISO_SLUGS[fideicomiso.id]}`}
+                className="group mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-ink-900 hover:text-brass-600"
+              >
+                Ver ficha del proyecto
+                <ArrowUpRight
+                  size={12}
+                  className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                />
+              </Link>
+            )}
           </div>
         ))}
+      </div>
+
+      <div className="mt-10 grid gap-4 lg:grid-cols-2">
+        <div className="rounded-[2px] border border-paper-line bg-paper-50 p-6">
+          <h3 className="font-display text-base font-medium text-ink-900">
+            Evolución del avance físico
+          </h3>
+          <p className="mt-1 text-xs text-paper-muted">
+            {principal?.fideicomiso.nombre ?? "Sin datos"}
+          </p>
+          <div className="mt-4">
+            {evolucion.length > 0 ? (
+              <LineChart points={evolucion} />
+            ) : (
+              <p className="text-sm text-paper-muted">
+                Todavía no hay actualizaciones cargadas.
+              </p>
+            )}
+          </div>
+        </div>
+
+        <div className="rounded-[2px] border border-paper-line bg-paper-50 p-6">
+          <h3 className="font-display text-base font-medium text-ink-900">
+            Distribución del capital
+          </h3>
+          <p className="mt-1 text-xs text-paper-muted">
+            Por fideicomiso adjudicado
+          </p>
+          <div className="mt-5">
+            {distribucion.length > 0 ? (
+              <DonutChart segments={distribucion} />
+            ) : (
+              <p className="text-sm text-paper-muted">
+                Todavía no tenés módulos adjudicados.
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-10">
+        <h2 className="font-display text-lg font-medium text-ink-900">
+          Últimas actualizaciones
+        </h2>
+        <div className="mt-4 overflow-x-auto rounded-[2px] border border-paper-line bg-paper-50">
+          <table className="w-full min-w-[480px] text-left text-sm">
+            <thead>
+              <tr className="border-b border-paper-line text-xs uppercase tracking-wide text-paper-muted">
+                <th className="px-5 py-3 font-medium">Mes</th>
+                <th className="px-5 py-3 font-medium">Fideicomiso</th>
+                <th className="px-5 py-3 font-medium">Novedad</th>
+              </tr>
+            </thead>
+            <tbody>
+              {actualizaciones.map((a, i) => (
+                <tr
+                  key={`${a.fideicomiso}-${a.mes}`}
+                  className={i !== 0 ? "border-t border-paper-line" : ""}
+                >
+                  <td className="whitespace-nowrap px-5 py-3.5 font-medium text-brass-600">
+                    {a.mes}
+                  </td>
+                  <td className="whitespace-nowrap px-5 py-3.5 text-ink-900">
+                    {a.fideicomiso}
+                  </td>
+                  <td className="px-5 py-3.5 text-paper-muted">{a.nota}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

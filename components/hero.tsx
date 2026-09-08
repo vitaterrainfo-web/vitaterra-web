@@ -64,25 +64,25 @@ export function Hero() {
         />
       ))}
 
-      <div className="absolute inset-0 bg-gradient-to-r from-ink-950/95 via-ink-950/80 to-ink-950/45" />
       <div className="absolute inset-0 bg-gradient-to-t from-ink-950/70 via-transparent to-transparent" />
-
-      <Image
-        src="/images/logo-vitaterra.jpeg"
-        alt=""
-        width={1100}
-        height={1100}
-        aria-hidden
-        className="pointer-events-none absolute -right-40 top-1/2 w-[1100px] max-w-none -translate-y-1/2 opacity-[0.14] brightness-0"
+      <div
+        className="pointer-events-none absolute inset-y-0 left-0 w-[78%] max-w-3xl md:w-[60%]"
         style={{
-          maskImage:
-            "radial-gradient(circle, black 0%, transparent 65%)",
-          WebkitMaskImage:
-            "radial-gradient(circle, black 0%, transparent 65%)",
+          background:
+            "radial-gradient(ellipse 100% 85% at 22% 50%, rgba(8,8,8,0.8) 0%, rgba(8,8,8,0.55) 50%, transparent 82%)",
         }}
       />
 
       <div className="relative mx-auto w-full max-w-6xl px-6 md:px-8">
+        <Image
+          src="/images/logo-vitaterra-mark.png"
+          alt=""
+          width={820}
+          height={820}
+          aria-hidden
+          className="pointer-events-none absolute right-[-60px] top-1/2 w-[420px] max-w-none -translate-y-1/2 opacity-[0.44] brightness-0 sm:w-[540px] md:w-[660px] lg:w-[740px]"
+        />
+
         <Reveal>
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brass-400">
             Economía real &amp; productiva
@@ -100,7 +100,7 @@ export function Hero() {
 
           <p
             key={`body-${active}`}
-            className="mt-6 max-w-md text-[1.05rem] leading-relaxed text-paper-100/75"
+            className="mt-6 max-w-md text-[1.05rem] leading-relaxed text-paper-100/90"
           >
             {slide.body}
           </p>

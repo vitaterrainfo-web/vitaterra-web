@@ -41,9 +41,10 @@ export function Ventajas() {
             <Reveal
               key={title}
               delay={i * 100}
-              className="group rounded-[2px] border border-paper-line bg-paper-50 p-7 transition-all duration-300 hover:-translate-y-1 hover:border-brass-400/50 hover:shadow-[0_20px_40px_-28px_rgba(12,23,18,0.4)]"
+              className="group relative overflow-hidden rounded-[2px] border border-paper-line bg-paper-50 p-7 transition-all duration-300 hover:-translate-y-1 hover:border-brass-400/50 hover:shadow-[0_20px_40px_-28px_rgba(12,23,18,0.4)]"
             >
-              <div className="flex h-11 w-11 items-center justify-center rounded-full border border-paper-line text-clay-600 transition-colors group-hover:border-brass-400 group-hover:text-brass-500">
+              <span className="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-brass-500 transition-transform duration-300 group-hover:scale-x-100" />
+              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-paper-100 text-clay-600 transition-colors duration-300 group-hover:bg-brass-500 group-hover:text-ink-950">
                 <Icon size={20} />
               </div>
               <h3 className="mt-4 font-display text-lg font-medium text-ink-900">

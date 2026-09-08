@@ -1,4 +1,8 @@
-import { ShieldCheck, Target, Users } from "lucide-react";
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+import { ShieldCheck, Target, Users, ChevronDown } from "lucide-react";
 import { Reveal } from "./reveal";
 
 const PILARES = [
@@ -36,26 +40,32 @@ const PROCESO = [
   {
     titulo: "Vitaterra estructura el fideicomiso",
     body: "Se define el proyecto productivo, el presupuesto y la cantidad de Módulos de Adhesión disponibles.",
+    imagen: "/images/proceso/paso-1.jpeg",
   },
   {
     titulo: "Un fiduciario independiente administra los bienes",
     body: "Grupo Agro SRL toma la titularidad fiduciaria de los activos del proyecto bajo un patrimonio separado y auditable.",
+    imagen: "/images/proceso/paso-2.jpeg",
   },
   {
     titulo: "Los participantes adhieren mediante contrato digital",
     body: "Cada fiduciante firma electrónicamente su Acta de Adhesión y aporta capital directo a la cuenta del fideicomiso.",
+    imagen: "/images/proceso/paso-3.jpeg",
   },
   {
     titulo: "Los resultados se distribuyen según el reglamento",
     body: "La actividad productiva genera resultados que se calculan y distribuyen periódicamente según la política de capitalización de cada proyecto.",
+    imagen: "/images/proceso/paso-4.jpeg",
   },
   {
     titulo: "Al finalizar el plazo, se liquida o renueva el fideicomiso",
     body: "Se realiza la liquidación de los activos o se define la continuidad del proyecto según lo previsto en el reglamento.",
+    imagen: "/images/proceso/paso-5.jpeg",
   },
   {
     titulo: "Los participantes reciben su parte proporcional",
     body: "El resultado final se distribuye entre los fiduciantes en proporción a sus Módulos de Adhesión.",
+    imagen: "/images/proceso/paso-6.jpeg",
   },
 ];
 
@@ -75,6 +85,8 @@ const BENEFICIOS = [
 ];
 
 export function SeguridadInstitucional() {
+  const [openStep, setOpenStep] = useState<number | null>(0);
+
   return (
     <section
       id="seguridad"
@@ -137,28 +149,70 @@ export function SeguridadInstitucional() {
           </p>
 
           <div className="mt-8 space-y-0">
-            {PROCESO.map((step, i) => (
-              <Reveal key={step.titulo} delay={i * 70}>
-                <div className="flex gap-5">
-                  <div className="flex flex-col items-center">
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-brass-400/50 font-display text-sm text-brass-400">
-                      {i + 1}
+            {PROCESO.map((step, i) => {
+              const isOpen = openStep === i;
+              return (
+                <Reveal key={step.titulo} delay={i * 70}>
+                  <div className="flex gap-5">
+                    <div className="flex flex-col items-center">
+                      <div
+                        className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full border font-display text-sm transition-colors ${
+                          isOpen
+                            ? "border-brass-400 bg-brass-400 text-ink-950"
+                            : "border-brass-400/50 text-brass-400"
+                        }`}
+                      >
+                        {i + 1}
+                      </div>
+                      {i < PROCESO.length - 1 && (
+                        <div className="w-px flex-1 bg-paper-50/15" />
+                      )}
                     </div>
-                    {i < PROCESO.length - 1 && (
-                      <div className="w-px flex-1 bg-paper-50/15" />
-                    )}
+                    <div className="w-full pb-8">
+                      <button
+                        type="button"
+                        onClick={() => setOpenStep(isOpen ? null : i)}
+                        className="flex w-full items-center justify-between gap-4 text-left"
+                      >
+                        <span>
+                          <h4 className="font-display text-base font-medium text-paper-50">
+                            {step.titulo}
+                          </h4>
+                          <p className="mt-1.5 max-w-xl text-sm leading-relaxed text-paper-100/70">
+                            {step.body}
+                          </p>
+                        </span>
+                        <ChevronDown
+                          size={18}
+                          className={`mt-1 shrink-0 text-brass-400 transition-transform ${
+                            isOpen ? "rotate-180" : ""
+                          }`}
+                        />
+                      </button>
+
+                      <div
+                        className={`grid transition-all duration-300 ease-out ${
+                          isOpen
+                            ? "mt-4 grid-rows-[1fr] opacity-100"
+                            : "grid-rows-[0fr] opacity-0"
+                        }`}
+                      >
+                        <div className="overflow-hidden">
+                          <div className="relative aspect-[16/9] w-full max-w-xl overflow-hidden rounded-[2px] border border-paper-50/10">
+                            <Image
+                              src={step.imagen}
+                              alt={step.titulo}
+                              fill
+                              className="object-cover"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="pb-8">
-                    <h4 className="font-display text-base font-medium text-paper-50">
-                      {step.titulo}
-                    </h4>
-                    <p className="mt-1.5 max-w-xl text-sm leading-relaxed text-paper-100/70">
-                      {step.body}
-                    </p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
+                </Reveal>
+              );
+            })}
           </div>
         </div>
 

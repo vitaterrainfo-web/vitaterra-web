@@ -3,25 +3,21 @@ import { Reveal } from "./reveal";
 
 const STEPS = [
   {
-    n: "01",
     icon: Search,
     title: "Selección del proyecto productivo",
     body: "Explorá los diferentes proyectos de la economía real disponibles en la plataforma. Elegí participar en un desarrollo inmobiliario en pozo o sumarte a la explotación de nuestra flota automotor comercial.",
   },
   {
-    n: "02",
     icon: FileCheck2,
     title: "Adhesión digital y aporte de capital",
     body: "Elegí la cantidad de Módulos de Adhesión con los que querés participar. Validá tu identidad, completá tu declaración jurada de origen de fondos y firmá electrónicamente tu Acta de Adhesión, 100% digital.",
   },
   {
-    n: "03",
     icon: Building2,
     title: "Gestión profesional del patrimonio separado",
     body: "Nos encargamos del trabajo duro: ejecución de obras, compra de materiales, seguros y mantenimiento técnico. El capital queda protegido dentro de un patrimonio separado y blindado, ajeno a riesgos externos.",
   },
   {
-    n: "04",
     icon: LineChart,
     title: "Rendición de cuentas y distribución de resultados",
     body: "Seguí la evolución del proyecto en tiempo real desde tu panel. Periódicamente se calculan y distribuyen los resultados netos de la liquidación de la obra o de la explotación comercial de la flota.",
@@ -45,29 +41,30 @@ export function ComoFunciona() {
           </div>
         </Reveal>
 
-        <div className="mt-4 grid divide-y divide-paper-line md:grid-cols-2 md:divide-x md:divide-y-0">
-          {STEPS.map(({ icon: Icon, title, body, n }, i) => (
-            <Reveal key={title} delay={i * 90} className="group">
-              <div className="flex gap-5 py-8 transition-colors duration-300 md:px-8 md:group-hover:bg-paper-100/60">
-                <div className="shrink-0">
-                  <span className="font-display text-sm text-brass-600">
-                    {n}
-                  </span>
-                  <div className="mt-3 flex h-10 w-10 items-center justify-center rounded-full border border-paper-line text-ink-800 transition-colors group-hover:border-brass-400 group-hover:text-brass-500">
-                    <Icon size={17} />
+        <div className="relative mt-16">
+          <div className="pointer-events-none absolute left-[12.5%] right-[12.5%] top-6 hidden h-px bg-paper-line lg:block" />
+
+          <div className="relative grid gap-y-14 gap-x-8 sm:grid-cols-2 lg:grid-cols-4">
+            {STEPS.map(({ icon: Icon, title, body }, i) => (
+              <Reveal key={title} delay={i * 90} className="group">
+                <div className="flex flex-col items-center text-center transition-transform duration-300 group-hover:-translate-y-1">
+                  <div className="relative flex h-12 w-12 items-center justify-center rounded-full border border-paper-line bg-paper-50 text-ink-800 transition-all duration-300 group-hover:border-brass-400 group-hover:text-brass-600 group-hover:shadow-[0_10px_24px_-12px_rgba(184,149,47,0.55)]">
+                    <Icon size={18} />
+                    <span className="absolute -right-1.5 -top-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-ink-900 font-display text-[11px] font-medium text-paper-50 transition-colors duration-300 group-hover:bg-brass-500 group-hover:text-ink-950">
+                      {i + 1}
+                    </span>
                   </div>
-                </div>
-                <div>
-                  <h3 className="font-display text-lg font-medium text-ink-900">
+
+                  <h3 className="mt-5 font-display text-lg font-medium text-ink-900">
                     {title}
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-paper-muted">
                     {body}
                   </p>
                 </div>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>

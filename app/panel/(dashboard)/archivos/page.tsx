@@ -9,7 +9,7 @@ type Documento = {
   tipo: string;
 };
 
-export default function PanelDocumentosPage() {
+export default function PanelArchivosPage() {
   const documentos: Documento[] = FIDUCIANTE_DEMO.participaciones.flatMap(
     (p) => {
       const fideicomiso = FIDEICOMISOS.find((f) => f.id === p.fideicomisoId)!;
@@ -34,9 +34,9 @@ export default function PanelDocumentosPage() {
   );
 
   return (
-    <div className="p-8">
+    <div>
       <h1 className="font-display text-2xl font-medium text-ink-900">
-        Contratos y respaldos
+        Mis archivos
       </h1>
       <p className="mt-1 text-sm text-paper-muted">
         Documentación asociada a tu participación en cada fideicomiso.

@@ -74,6 +74,8 @@ export type Fiduciante = {
   id: string;
   nombre: string;
   email: string;
+  telefono: string;
+  domicilio: string;
   cuit: string;
   kycVerificado: boolean;
   ddjjFirmada: boolean;
@@ -85,6 +87,8 @@ export const FIDUCIANTE_DEMO: Fiduciante = {
   id: "fid-demo-001",
   nombre: "Federico Losco",
   email: "demo@vitaterradesarrollos.com.ar",
+  telefono: "+54 9 11 7651-9226",
+  domicilio: "Av. Libertador 4500, CABA",
   cuit: "20-00000000-0",
   kycVerificado: true,
   ddjjFirmada: true,
@@ -99,6 +103,8 @@ export const FIDUCIANTES_DEMO: Fiduciante[] = [
     id: "fid-demo-002",
     nombre: "María Camila Suárez",
     email: "camila.suarez@example.com",
+    telefono: "+54 9 341 555-0102",
+    domicilio: "Bv. Oroño 1200, Rosario",
     cuit: "27-00000001-4",
     kycVerificado: true,
     ddjjFirmada: false,
@@ -108,6 +114,8 @@ export const FIDUCIANTES_DEMO: Fiduciante[] = [
     id: "fid-demo-003",
     nombre: "Roberto Daniel Ibarra",
     email: "r.ibarra@example.com",
+    telefono: "+54 9 261 555-0143",
+    domicilio: "Av. San Martín 800, Mendoza",
     cuit: "20-00000002-1",
     kycVerificado: false,
     ddjjFirmada: false,
@@ -118,3 +126,9 @@ export const FIDUCIANTES_DEMO: Fiduciante[] = [
 export function formatUsd(n: number) {
   return `USD ${n.toLocaleString("es-AR")}`;
 }
+
+// Ruta pública de la ficha técnica de cada fideicomiso, para enlazar desde el panel.
+export const FIDEICOMISO_SLUGS: Record<string, string> = {
+  "agroganadero-vitaterra-i": "agroganadero",
+  "flota-comercial-vitaterra": "flota",
+};

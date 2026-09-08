@@ -1,21 +1,38 @@
 "use client";
 
-import { FIDEICOMISOS, FIDUCIANTE_DEMO, formatUsd } from "@/lib/panel-data";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import {
+  FIDEICOMISOS,
+  FIDUCIANTE_DEMO,
+  FIDEICOMISO_SLUGS,
+  formatUsd,
+} from "@/lib/panel-data";
 
-export default function PanelProyectosPage() {
+export default function PanelFideicomisosPage() {
   const participaciones = FIDUCIANTE_DEMO.participaciones.map((p) => ({
     ...p,
     fideicomiso: FIDEICOMISOS.find((f) => f.id === p.fideicomisoId)!,
   }));
 
   return (
-    <div className="p-8">
+    <div>
       <h1 className="font-display text-2xl font-medium text-ink-900">
-        Mis proyectos
+        Fideicomisos
       </h1>
       <p className="mt-1 text-sm text-paper-muted">
         Detalle de tu participación y el avance de cada fideicomiso.
       </p>
+
+      {participaciones.length === 0 && (
+        <p className="mt-8 text-sm text-paper-muted">
+          Todavía no adherís a ningún fideicomiso.{" "}
+          <Link href="/#oportunidades" className="font-medium text-ink-900 hover:text-brass-600">
+            Explorá los proyectos disponibles
+          </Link>
+          .
+        </p>
+      )}
 
       <div className="mt-8 space-y-5">
         {participaciones.map(({ fideicomiso, modulos }) => (
@@ -82,6 +99,19 @@ export default function PanelProyectosPage() {
                   ))}
               </ul>
             </div>
+
+            {FIDEICOMISO_SLUGS[fideicomiso.id] && (
+              <Link
+                href={`/oportunidades/${FIDEICOMISO_SLUGS[fideicomiso.id]}`}
+                className="group mt-6 inline-flex items-center gap-1.5 text-xs font-semibold text-ink-900 hover:text-brass-600"
+              >
+                Ver ficha del proyecto
+                <ArrowUpRight
+                  size={12}
+                  className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                />
+              </Link>
+            )}
           </div>
         ))}
       </div>

@@ -5,7 +5,7 @@ import { ShieldCheck, ShieldAlert } from "lucide-react";
 import { FIDUCIANTE_DEMO } from "@/lib/panel-data";
 import { getSessionNombre, getSessionEmail } from "@/lib/panel-auth";
 
-export default function PanelPerfilPage() {
+export default function PanelDatosPage() {
   const f = FIDUCIANTE_DEMO;
   const [nombre, setNombre] = useState(f.nombre);
   const [email, setEmail] = useState(f.email);
@@ -16,9 +16,9 @@ export default function PanelPerfilPage() {
   }, [f.nombre, f.email]);
 
   return (
-    <div className="p-8">
+    <div>
       <h1 className="font-display text-2xl font-medium text-ink-900">
-        Mi perfil
+        Mis datos
       </h1>
       <p className="mt-1 text-sm text-paper-muted">
         Datos de tu perfil de fiduciante y estado de tu validación de
@@ -28,6 +28,8 @@ export default function PanelPerfilPage() {
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
         <Field label="Nombre y apellido" value={nombre} />
         <Field label="Email" value={email} />
+        <Field label="Teléfono" value={f.telefono} />
+        <Field label="Domicilio" value={f.domicilio} />
         <Field label="CUIT / CUIL" value={f.cuit} />
         <Field
           label="Módulos totales adjudicados"
