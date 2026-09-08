@@ -7,10 +7,34 @@ import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "./reveal";
 
 const SLIDES = [
-  { src: "/images/hero-1.jpeg", label: "Inmobiliario en pozo" },
-  { src: "/images/hero-2.jpeg", label: "Producción agroganadera" },
-  { src: "/images/hero-3.jpeg", label: "Proyecto vitivinícola" },
-  { src: "/images/hero-4.jpeg", label: "Flotas comerciales" },
+  {
+    src: "/images/hero-1.jpeg",
+    label: "Inmobiliario en pozo",
+    title: "Participá en el desarrollo",
+    highlight: "de tu próxima propiedad.",
+    body: "Sumate a la construcción de unidades residenciales desde el pozo, con contratos privados respaldados por el inmueble en obra.",
+  },
+  {
+    src: "/images/hero-2.jpeg",
+    label: "Producción agroganadera",
+    title: "Participá en el campo",
+    highlight: "sin ser productor.",
+    body: "Sumate a un fideicomiso agroganadero respaldado por tierra propia, hacienda y una red de distribución directa.",
+  },
+  {
+    src: "/images/hero-3.jpeg",
+    label: "Proyecto vitivinícola",
+    title: "Participá del vino",
+    highlight: "desde el viñedo.",
+    body: "Sumate a la producción y comercialización de vino, respaldada por viñedos propios y gestión enológica profesional.",
+  },
+  {
+    src: "/images/hero-4.jpeg",
+    label: "Flotas comerciales",
+    title: "Participá en logística",
+    highlight: "sin gestionar una flota.",
+    body: "Sumate a una flota de utilitarios en explotación comercial, respaldada por contratos de logística corporativa.",
+  },
 ];
 
 export function Hero() {
@@ -23,13 +47,15 @@ export function Hero() {
     return () => clearInterval(id);
   }, []);
 
+  const slide = SLIDES[active];
+
   return (
     <section className="relative isolate flex min-h-[88vh] items-center overflow-hidden bg-ink-950">
-      {SLIDES.map((slide, i) => (
+      {SLIDES.map((s, i) => (
         <Image
-          key={slide.src}
-          src={slide.src}
-          alt={slide.label}
+          key={s.src}
+          src={s.src}
+          alt={s.label}
           fill
           priority={i === 0}
           className={`object-cover transition-opacity duration-1000 ease-out ${
@@ -38,7 +64,7 @@ export function Hero() {
         />
       ))}
 
-      <div className="absolute inset-0 bg-gradient-to-r from-ink-950/95 via-ink-950/75 to-ink-950/30" />
+      <div className="absolute inset-0 bg-gradient-to-r from-ink-950/95 via-ink-950/80 to-ink-950/45" />
       <div className="absolute inset-0 bg-gradient-to-t from-ink-950/70 via-transparent to-transparent" />
 
       <Image
@@ -47,7 +73,13 @@ export function Hero() {
         width={1100}
         height={1100}
         aria-hidden
-        className="pointer-events-none absolute -right-40 top-1/2 w-[1100px] max-w-none -translate-y-1/2 opacity-[0.07] brightness-0 invert"
+        className="pointer-events-none absolute -right-40 top-1/2 w-[1100px] max-w-none -translate-y-1/2 opacity-[0.14] brightness-0"
+        style={{
+          maskImage:
+            "radial-gradient(circle, black 0%, transparent 65%)",
+          WebkitMaskImage:
+            "radial-gradient(circle, black 0%, transparent 65%)",
+        }}
       />
 
       <div className="relative mx-auto w-full max-w-6xl px-6 md:px-8">
@@ -56,17 +88,21 @@ export function Hero() {
             Economía real &amp; productiva
           </p>
 
-          <h1 className="mt-5 max-w-xl font-display text-4xl font-medium leading-[1.08] text-paper-50 md:text-[3.4rem]">
-            Participá en fideicomisos{" "}
+          <h1
+            key={active}
+            className="mt-5 max-w-xl font-display text-4xl font-medium leading-[1.08] text-paper-50 md:text-[3.4rem]"
+          >
+            {slide.title}{" "}
             <span className="font-display italic text-brass-300">
-              sin complicaciones.
+              {slide.highlight}
             </span>
           </h1>
 
-          <p className="mt-6 max-w-md text-[1.05rem] leading-relaxed text-paper-100/75">
-            Adquirí participación en desarrollos inmobiliarios, producción
-            agroganadera, proyecto vitivinícola y flotas comerciales,
-            mediante contratos privados respaldados por activos reales.
+          <p
+            key={`body-${active}`}
+            className="mt-6 max-w-md text-[1.05rem] leading-relaxed text-paper-100/75"
+          >
+            {slide.body}
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">
@@ -89,13 +125,13 @@ export function Hero() {
           </div>
         </Reveal>
 
-        <div className="mt-14 flex items-center gap-3">
-          {SLIDES.map((slide, i) => (
+        <div className="mt-14 flex flex-wrap items-center gap-3">
+          {SLIDES.map((s, i) => (
             <button
-              key={slide.src}
+              key={s.src}
               type="button"
               onClick={() => setActive(i)}
-              aria-label={slide.label}
+              aria-label={s.label}
               className="group flex items-center gap-2"
             >
               <span
@@ -112,7 +148,7 @@ export function Hero() {
                     : "text-paper-100/40 group-hover:text-paper-100/70"
                 }`}
               >
-                {slide.label}
+                {s.label}
               </span>
             </button>
           ))}

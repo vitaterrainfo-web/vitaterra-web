@@ -34,7 +34,7 @@ export function Header() {
             href="/panel/login"
             className="whitespace-nowrap rounded-[2px] border border-ink-900 px-3.5 py-1.5 text-sm font-semibold text-ink-900 transition-colors hover:bg-ink-900 hover:text-paper-50"
           >
-            Iniciar sesión
+            Iniciar sesión / Registrarme
           </Link>
           <Link
             href="/#oportunidades"
@@ -87,7 +87,7 @@ export function Header() {
                 Iniciar sesión
               </Link>
               <Link
-                href="/panel/login"
+                href="/panel/registro"
                 className="text-sm font-semibold text-ink-900"
                 onClick={() => setOpen(false)}
               >

@@ -1,10 +1,11 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { LayoutDashboard, FolderKanban, FileText, User, LogOut } from "lucide-react";
-import { logout } from "@/lib/panel-auth";
+import { logout, getSessionNombre, getSessionEmail } from "@/lib/panel-auth";
 import { FIDUCIANTE_DEMO } from "@/lib/panel-data";
 
 const NAV = [
@@ -17,6 +18,13 @@ const NAV = [
 export function PanelSidebar() {
   const pathname = usePathname();
   const router = useRouter();
+  const [nombre, setNombre] = useState(FIDUCIANTE_DEMO.nombre);
+  const [email, setEmail] = useState(FIDUCIANTE_DEMO.email);
+
+  useEffect(() => {
+    setNombre(getSessionNombre() ?? FIDUCIANTE_DEMO.nombre);
+    setEmail(getSessionEmail() ?? FIDUCIANTE_DEMO.email);
+  }, []);
 
   return (
     <aside className="flex h-screen w-64 shrink-0 flex-col border-r border-paper-line bg-paper-50">
@@ -57,12 +65,8 @@ export function PanelSidebar() {
       </nav>
 
       <div className="border-t border-paper-line px-4 py-4">
-        <p className="truncate text-xs text-paper-muted">
-          {FIDUCIANTE_DEMO.nombre}
-        </p>
-        <p className="truncate text-[11px] text-paper-muted/70">
-          {FIDUCIANTE_DEMO.email}
-        </p>
+        <p className="truncate text-xs text-paper-muted">{nombre}</p>
+        <p className="truncate text-[11px] text-paper-muted/70">{email}</p>
         <button
           type="button"
           onClick={() => {

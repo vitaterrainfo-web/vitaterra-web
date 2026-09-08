@@ -13,8 +13,9 @@ type SessionStage = "password" | "otp" | "kyc" | "done";
 
 type Session = {
   email: string;
-  stage: SessionStage;
+  nombre?: string;
   expiresAt: number;
+  stage: SessionStage;
 };
 
 function readSession(): Session | null {
@@ -46,6 +47,27 @@ export function checkPassword(email: string, password: string) {
     expiresAt: Date.now() + SESSION_TTL_MS,
   });
   return true;
+}
+
+// Alta de un nuevo fiduciante (demo): no valida contra ninguna base real,
+// solo abre una sesión nueva en la etapa "otp" para probar el circuito completo.
+export function registrar(nombre: string, email: string, password: string) {
+  if (!nombre.trim() || !email.trim() || password.length < 6) return false;
+  writeSession({
+    email: email.trim().toLowerCase(),
+    nombre: nombre.trim(),
+    stage: "otp",
+    expiresAt: Date.now() + SESSION_TTL_MS,
+  });
+  return true;
+}
+
+export function getSessionEmail(): string | null {
+  return readSession()?.email ?? null;
+}
+
+export function getSessionNombre(): string | null {
+  return readSession()?.nombre ?? null;
 }
 
 // Cualquier código de 6 dígitos es válido: es una demo, no envía mail real todavía.

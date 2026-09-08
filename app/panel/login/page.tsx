@@ -68,9 +68,19 @@ export default function PanelLoginPage() {
         </p>
       </form>
 
+      <p className="mt-6 text-xs text-paper-muted">
+        ¿Todavía no tenés un perfil?{" "}
+        <Link
+          href="/panel/registro"
+          className="font-medium text-ink-900 hover:text-brass-600"
+        >
+          Registrate
+        </Link>
+      </p>
+
       <Link
         href="/"
-        className="mt-6 inline-block text-xs font-medium text-paper-muted hover:text-ink-900"
+        className="mt-4 inline-block text-xs font-medium text-paper-muted hover:text-ink-900"
       >
         ← Volver al sitio
       </Link>
