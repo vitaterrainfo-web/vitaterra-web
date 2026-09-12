@@ -50,7 +50,7 @@ export function Hero() {
   const slide = SLIDES[active];
 
   return (
-    <section className="relative isolate flex min-h-[68vh] items-center overflow-hidden bg-ink-950 md:min-h-[74vh]">
+    <section className="relative isolate flex min-h-[56vh] items-center overflow-hidden bg-ink-950 md:min-h-[74vh]">
       {SLIDES.map((s, i) => (
         <Image
           key={s.src}
@@ -91,7 +91,7 @@ export function Hero() {
 
           <h1
             key={active}
-            className="mt-5 max-w-xl font-display text-4xl font-medium leading-[1.08] text-paper-50 md:text-[3.4rem]"
+            className="mt-3 max-w-xl font-display text-3xl font-medium leading-[1.08] text-paper-50 sm:mt-5 sm:text-4xl md:text-[3.4rem]"
           >
             {slide.title}{" "}
             <span className="font-display italic text-brass-300">
@@ -101,12 +101,12 @@ export function Hero() {
 
           <p
             key={`body-${active}`}
-            className="mt-6 max-w-md text-[1.05rem] leading-relaxed text-paper-100/90"
+            className="mt-3 max-w-md text-sm leading-relaxed text-paper-100/90 sm:mt-6 sm:text-[1.05rem]"
           >
             {slide.body}
           </p>
 
-          <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">
+          <div className="mt-5 flex flex-wrap items-center gap-x-8 gap-y-4 sm:mt-9">
             <Link
               href="/#oportunidades"
               className="group inline-flex items-center gap-2.5 rounded-[2px] bg-brass-500 px-7 py-3.5 text-sm font-semibold text-ink-950 shadow-[0_16px_30px_-14px_rgba(184,149,47,0.6)] transition-colors hover:bg-brass-400"
@@ -126,7 +126,7 @@ export function Hero() {
           </div>
         </Reveal>
 
-        <div className="mt-14 flex flex-wrap items-center gap-3">
+        <div className="mt-6 flex flex-wrap items-center gap-3 sm:mt-14">
           {SLIDES.map((s, i) => (
             <button
               key={s.src}
