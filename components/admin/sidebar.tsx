@@ -21,14 +21,14 @@ export function AdminSidebar() {
       <div className="flex items-center gap-2.5 border-b border-paper-line px-6 py-5">
         <Image
           src="/images/logo-vitaterra-badge.jpg"
-          alt="Vitaterra"
+          alt="Vita Terra"
           width={30}
           height={30}
           className="rounded-full object-cover"
         />
         <div className="leading-tight">
           <p className="font-display text-base font-medium text-ink-900">
-            Vitaterra
+            Vita Terra
           </p>
           <p className="text-[11px] text-paper-muted">Panel de Grupo Agro SRL</p>
         </div>

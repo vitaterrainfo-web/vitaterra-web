@@ -45,14 +45,14 @@ export function PanelTopNav() {
         <Link href="/panel" className="flex items-center gap-2.5">
           <Image
             src="/images/logo-vitaterra-badge.jpg"
-            alt="Vitaterra"
+            alt="Vita Terra"
             width={30}
             height={30}
             className="rounded-full object-cover"
           />
           <div className="leading-tight">
             <p className="font-display text-base font-medium text-ink-900">
-              Vitaterra
+              Vita Terra
             </p>
             <p className="text-[11px] text-paper-muted">
               Mi perfil de fiduciante
@@ -73,7 +73,7 @@ export function PanelTopNav() {
           <Link
             href="/admin/login"
             className="hidden items-center gap-1.5 text-xs font-medium text-paper-muted transition-colors hover:text-ink-900 md:flex"
-            title="Acceso para administradores de Vitaterra"
+            title="Acceso para administradores de Vita Terra"
           >
             <ShieldCheck size={13} />
             Panel de gestión

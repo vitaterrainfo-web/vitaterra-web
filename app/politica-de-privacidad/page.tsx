@@ -4,9 +4,9 @@ import { Footer } from "@/components/footer";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata = {
-  title: "Política de Privacidad | Vitaterra",
+  title: "Política de Privacidad | Vita Terra",
   description:
-    "Política de privacidad de Vitaterra Desarrollos: recolección, tratamiento y protección de datos personales.",
+    "Política de privacidad de Vita Terra Desarrollos: recolección, tratamiento y protección de datos personales.",
 };
 
 export default function PoliticaDePrivacidadPage() {
@@ -26,7 +26,7 @@ export default function PoliticaDePrivacidadPage() {
             Marco legal
           </p>
           <h1 className="mt-3 font-display text-3xl font-medium text-ink-900 md:text-4xl">
-            Política de Privacidad de Vitaterra Desarrollos
+            Política de Privacidad de Vita Terra Desarrollos
           </h1>
 
           <article className="mt-12 space-y-12">

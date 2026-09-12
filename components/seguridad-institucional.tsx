@@ -38,7 +38,7 @@ const PILARES = [
 
 const PROCESO = [
   {
-    titulo: "Vitaterra estructura el fideicomiso",
+    titulo: "Vita Terra estructura el fideicomiso",
     body: "Se define el proyecto productivo, el presupuesto y la cantidad de Módulos de Adhesión disponibles.",
     imagen: "/images/proceso/paso-1.jpeg",
   },
@@ -142,7 +142,7 @@ export function SeguridadInstitucional() {
 
         <div className="mt-20">
           <h3 className="font-display text-xl font-medium text-paper-50">
-            El proceso de Vitaterra
+            El proceso de Vita Terra
           </h3>
           <p className="mt-2 max-w-2xl text-sm leading-relaxed text-paper-100/70">
             La mecánica jurídica detrás de cada fideicomiso, paso a paso.

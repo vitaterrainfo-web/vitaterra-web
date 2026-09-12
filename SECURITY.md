@@ -1,4 +1,4 @@
-# Seguridad de Vitaterra — estado actual y checklist antes de lanzar
+# Seguridad de Vita Terra — estado actual y checklist antes de lanzar
 
 Este documento es para quien tome la decisión de negocio de lanzar el sitio
 con plata y datos reales de fiduciantes. No es un ensayo de seguridad

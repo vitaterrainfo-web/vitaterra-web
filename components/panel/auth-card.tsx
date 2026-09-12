@@ -18,13 +18,13 @@ export function AuthCard({
         <div className="flex items-center gap-2.5">
           <Image
             src="/images/logo-vitaterra-badge.jpg"
-            alt="Vitaterra"
+            alt="Vita Terra"
             width={32}
             height={32}
             className="rounded-full object-cover"
           />
           <span className="font-display text-lg font-medium text-ink-900">
-            Vitaterra
+            Vita Terra
           </span>
         </div>
 

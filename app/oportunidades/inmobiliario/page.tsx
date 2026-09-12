@@ -111,7 +111,7 @@ export default function InmobiliarioPage() {
             </h1>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-paper-100/80">
               Estamos estructurando el primer fideicomiso inmobiliario en
-              pozo de Vitaterra. Así es como va a funcionar el modelo de
+              pozo de Vita Terra. Así es como va a funcionar el modelo de
               participación cuando abramos la ficha técnica.
             </p>
             <p className="mt-5 max-w-2xl text-xs text-paper-100/60">
@@ -221,7 +221,7 @@ export default function InmobiliarioPage() {
                   Galería
                 </span>
                 <h2 className="mt-3 font-display text-3xl font-medium text-ink-900 md:text-4xl">
-                  El estándar constructivo de Vitaterra
+                  El estándar constructivo de Vita Terra
                 </h2>
               </div>
             </Reveal>

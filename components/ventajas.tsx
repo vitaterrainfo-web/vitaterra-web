@@ -27,7 +27,7 @@ export function Ventajas() {
           <div className="flex items-end justify-between gap-6 border-b border-paper-line pb-6">
             <div className="max-w-xl">
               <span className="text-xs font-semibold uppercase tracking-[0.25em] text-brass-600">
-                Por qué Vitaterra
+                Por qué Vita Terra
               </span>
               <h2 className="mt-3 font-display text-3xl font-medium text-ink-900 md:text-4xl">
                 La ventaja de trabajar con nosotros

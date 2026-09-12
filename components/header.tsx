@@ -13,7 +13,7 @@ export function Header() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 md:px-8">
         <Link href="/" className="flex items-center gap-2.5">
           <span className="font-display text-xl font-semibold uppercase tracking-[0.08em] text-ink-950">
-            Vitaterra
+            Vita Terra
           </span>
         </Link>
 

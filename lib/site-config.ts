@@ -1,6 +1,6 @@
 export const siteConfig = {
-  name: "Vitaterra",
-  legalName: "Vitaterra SRL",
+  name: "Vita Terra",
+  legalName: "Vita Terra SRL",
   fiduciary: "Grupo Agro SRL",
   domain: "vitaterradesarrollos.com.ar",
   email: "vitaterra.info@gmail.com",

@@ -90,7 +90,7 @@ export default function PanelInversionesPage() {
       </h1>
       <p className="mt-1 text-sm text-paper-muted">
         Panel consolidado de tu participación en los fideicomisos privados de
-        Vitaterra.
+        Vita Terra.
       </p>
 
       <div className="mt-6 flex gap-3 rounded-[2px] border border-brass-500/30 bg-brass-200/15 px-4 py-3.5">

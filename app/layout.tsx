@@ -16,9 +16,9 @@ const bodoniModa = Bodoni_Moda({
 });
 
 export const metadata: Metadata = {
-  title: "Vitaterra | Fideicomisos privados de economía real",
+  title: "Vita Terra | Fideicomisos privados de economía real",
   description:
-    "Vitaterra conecta fiduciantes con fideicomisos privados de desarrollo agroganadero, inmobiliario en pozo y flotas comerciales en Argentina. Economía real, activos tangibles.",
+    "Vita Terra conecta fiduciantes con fideicomisos privados de desarrollo agroganadero, inmobiliario en pozo y flotas comerciales en Argentina. Economía real, activos tangibles.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

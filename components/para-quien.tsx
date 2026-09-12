@@ -26,7 +26,7 @@ export function ParaQuien() {
         <Reveal>
           <div className="max-w-xl">
             <span className="text-xs font-semibold uppercase tracking-[0.25em] text-brass-600">
-              Para quién es Vitaterra
+              Para quién es Vita Terra
             </span>
             <h2 className="mt-3 font-display text-3xl font-medium text-ink-900 md:text-4xl">
               Pensado para distintos puntos de partida

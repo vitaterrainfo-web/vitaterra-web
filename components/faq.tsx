@@ -8,14 +8,14 @@ type Categoria = { titulo: string; preguntas: Pregunta[] };
 
 const CATEGORIAS: Categoria[] = [
   {
-    titulo: "Sobre Vitaterra",
+    titulo: "Sobre Vita Terra",
     preguntas: [
       {
-        q: "¿Qué es exactamente Vitaterra y cuál es su modelo?",
+        q: "¿Qué es exactamente Vita Terra y cuál es su modelo?",
         a: "Somos una plataforma digital que facilita el acceso a proyectos productivos de la economía real. Nuestro modelo permite a personas y empresas sumar capital de forma simplificada para el desarrollo de obras inmobiliarias en pozo, producción agroganadera, proyectos vitivinícolas o la explotación comercial de flotas de vehículos, utilizando como estructura jurídica contratos privados de fideicomisos administrados profesionalmente por Grupo Agro SRL.",
       },
       {
-        q: "¿Cómo gana dinero Vitaterra?",
+        q: "¿Cómo gana dinero Vita Terra?",
         a: "No cobramos comisión de entrada ni cargos ocultos al fiduciante. Nuestra remuneración es un honorario de administración fiduciaria, ya incorporado a la estructura de cada proyecto y descontado de los resultados operativos, nunca cobrado aparte. Parte de esa remuneración está además vinculada al éxito del proyecto: ganamos cuando el fideicomiso genera resultados.",
       },
     ],
@@ -25,7 +25,7 @@ const CATEGORIAS: Categoria[] = [
     preguntas: [
       {
         q: "¿Estoy realizando una inversión financiera o bursátil?",
-        a: "No. Al participar en Vitaterra no estás comprando acciones, bonos, títulos valores de oferta pública ni ningún instrumento del mercado de capitales. Estás realizando un aporte de capital privado destinado exclusivamente a activos físicos tangibles bajo el régimen de la ley de fideicomisos del Código Civil y Comercial de la Nación.",
+        a: "No. Al participar en Vita Terra no estás comprando acciones, bonos, títulos valores de oferta pública ni ningún instrumento del mercado de capitales. Estás realizando un aporte de capital privado destinado exclusivamente a activos físicos tangibles bajo el régimen de la ley de fideicomisos del Código Civil y Comercial de la Nación.",
       },
       {
         q: "¿Están regulados por la Comisión Nacional de Valores (CNV) o el Banco Central (BCRA)?",
@@ -33,7 +33,7 @@ const CATEGORIAS: Categoria[] = [
       },
       {
         q: "¿Qué es un Fideicomiso Privado y cómo protege mi capital?",
-        a: 'Un fideicomiso es una figura legal argentina muy sólida. Funciona creando un "patrimonio de afectación separado": el dinero y los bienes de cada proyecto forman una caja independiente y blindada, que no pueden ser tocados por acreedores de Vitaterra ni de otros proyectos.',
+        a: 'Un fideicomiso es una figura legal argentina muy sólida. Funciona creando un "patrimonio de afectación separado": el dinero y los bienes de cada proyecto forman una caja independiente y blindada, que no pueden ser tocados por acreedores de Vita Terra ni de otros proyectos.',
       },
       {
         q: '¿Qué es un "Módulo de Adhesión"?',
@@ -58,8 +58,8 @@ const CATEGORIAS: Categoria[] = [
     titulo: "Seguridad",
     preguntas: [
       {
-        q: "¿Qué pasa con mi aporte si Vitaterra deja de operar?",
-        a: "El patrimonio de cada fideicomiso es un bien separado por ley del patrimonio de Grupo Agro SRL y de Vitaterra SRL: no pertenece a la empresa administradora, pertenece al fideicomiso. Si la administradora dejara de operar, el patrimonio del proyecto no se ve afectado y la normativa civil prevé la designación de un fiduciario sustituto para continuar la gestión hasta la liquidación del proyecto.",
+        q: "¿Qué pasa con mi aporte si Vita Terra deja de operar?",
+        a: "El patrimonio de cada fideicomiso es un bien separado por ley del patrimonio de Grupo Agro SRL y de Vita Terra SRL: no pertenece a la empresa administradora, pertenece al fideicomiso. Si la administradora dejara de operar, el patrimonio del proyecto no se ve afectado y la normativa civil prevé la designación de un fiduciario sustituto para continuar la gestión hasta la liquidación del proyecto.",
       },
       {
         q: "¿Dónde están mis fondos mientras se conforma un proyecto?",

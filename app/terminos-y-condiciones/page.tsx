@@ -4,7 +4,7 @@ import { Footer } from "@/components/footer";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata = {
-  title: "Términos y Condiciones | Vitaterra",
+  title: "Términos y Condiciones | Vita Terra",
   description:
     "Términos y condiciones generales de uso de la plataforma vitaterradesarrollos.com.ar.",
 };

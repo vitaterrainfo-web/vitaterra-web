@@ -37,20 +37,20 @@ export function Footer() {
             >
               <Image
                 src="/images/logo-vitaterra-badge.jpg"
-                alt="Vitaterra"
+                alt="Vita Terra"
                 width={32}
                 height={32}
                 className="rounded-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
               <span className="font-display text-lg font-semibold uppercase tracking-[0.06em] text-paper-50">
-                Vitaterra
+                Vita Terra
               </span>
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-paper-100/60">
-              En Vitaterra transformamos la forma de participar en los
+              En Vita Terra transformamos la forma de participar en los
               sectores más sólidos de la economía real. Somos una plataforma
               digital impulsada por la sinergia de nuestras empresas
-              matrices, Vitaterra SRL y Grupo Agro SRL, nacida para
+              matrices, Vita Terra SRL y Grupo Agro SRL, nacida para
               simplificar el acceso a proyectos productivos tradicionales y
               tangibles.
             </p>
@@ -171,8 +171,8 @@ export function Footer() {
 
         <div className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-paper-50/10 pt-6 text-xs text-paper-muted md:flex-row">
           <p>
-            © {year} Vitaterra. La gestión de los fideicomisos privados y la
-            ejecución de activos es operada en forma conjunta por Vitaterra
+            © {year} Vita Terra. La gestión de los fideicomisos privados y la
+            ejecución de activos es operada en forma conjunta por Vita Terra
             SRL y Grupo Agro SRL. Todos los derechos reservados.
           </p>
           <p>
