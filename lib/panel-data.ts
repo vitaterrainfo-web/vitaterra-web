@@ -85,9 +85,9 @@ export type Fiduciante = {
 // Perfil de prueba usado por el panel de cliente (mock, sin backend real).
 export const FIDUCIANTE_DEMO: Fiduciante = {
   id: "fid-demo-001",
-  nombre: "Federico Losco",
+  nombre: "Hector Gómez",
   email: "demo@vitaterradesarrollos.com.ar",
-  telefono: "+54 9 11 7651-9226",
+  telefono: "+54 9 11 0000-0000",
   domicilio: "Av. Libertador 4500, CABA",
   cuit: "20-00000000-0",
   kycVerificado: true,
