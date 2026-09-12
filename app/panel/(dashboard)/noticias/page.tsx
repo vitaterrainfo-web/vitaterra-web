@@ -1,7 +1,8 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Newspaper, Sprout, Truck } from "lucide-react";
-import { FIDEICOMISOS, FIDUCIANTE_DEMO } from "@/lib/panel-data";
+import { getMisParticipaciones, type ParticipacionReal } from "@/lib/panel-session";
 
 const ICONOS: Record<string, typeof Sprout> = {
   "Desarrollo Agroganadero": Sprout,
@@ -9,15 +10,28 @@ const ICONOS: Record<string, typeof Sprout> = {
 };
 
 export default function PanelNoticiasPage() {
-  const novedades = FIDUCIANTE_DEMO.participaciones
-    .flatMap((p) => {
-      const fideicomiso = FIDEICOMISOS.find((f) => f.id === p.fideicomisoId)!;
-      return fideicomiso.actualizaciones.map((a) => ({
+  const [participaciones, setParticipaciones] = useState<ParticipacionReal[]>(
+    []
+  );
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    getMisParticipaciones().then((p) => {
+      setParticipaciones(p);
+      setLoaded(true);
+    });
+  }, []);
+
+  if (!loaded) return null;
+
+  const novedades = participaciones
+    .flatMap((p) =>
+      p.fideicomiso.actualizaciones.map((a) => ({
         ...a,
-        fideicomiso: fideicomiso.nombre,
-        categoria: fideicomiso.categoria,
-      }));
-    })
+        fideicomiso: p.fideicomiso.nombre,
+        categoria: p.fideicomiso.categoria,
+      }))
+    )
     .reverse();
 
   return (
@@ -58,11 +72,6 @@ export default function PanelNoticiasPage() {
           })}
         </div>
       )}
-
-      <p className="mt-8 text-xs text-paper-muted">
-        Demo: estas novedades son de prueba y reflejan las actualizaciones
-        mensuales cargadas para cada fideicomiso.
-      </p>
     </div>
   );
 }

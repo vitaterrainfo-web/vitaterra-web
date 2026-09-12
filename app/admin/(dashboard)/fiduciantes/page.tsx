@@ -2,18 +2,18 @@
 
 import { useEffect, useState } from "react";
 import { CheckCircle2, XCircle } from "lucide-react";
-import { getFiduciantes, toggleDdjj, toggleKyc } from "@/lib/admin-store";
-import { FIDEICOMISOS, type Fiduciante } from "@/lib/panel-data";
-
-function nombreFideicomiso(id: string) {
-  return FIDEICOMISOS.find((f) => f.id === id)?.nombre ?? id;
-}
+import {
+  adminListFiduciantes,
+  adminSetDdjj,
+  adminSetKyc,
+  type AdminFiduciante,
+} from "@/app/admin/data-actions";
 
 export default function AdminFiduciantesPage() {
-  const [fiduciantes, setFiduciantes] = useState<Fiduciante[]>([]);
+  const [fiduciantes, setFiduciantes] = useState<AdminFiduciante[]>([]);
 
   function load() {
-    setFiduciantes(getFiduciantes());
+    adminListFiduciantes().then(setFiduciantes);
   }
 
   useEffect(() => {
@@ -51,54 +51,54 @@ export default function AdminFiduciantesPage() {
                   <p className="font-medium text-ink-900">{f.nombre}</p>
                   <p className="text-xs text-paper-muted">{f.email}</p>
                 </td>
-                <td className="px-5 py-4 text-paper-muted">{f.cuit}</td>
+                <td className="px-5 py-4 text-paper-muted">{f.cuit ?? "—"}</td>
                 <td className="px-5 py-4 text-paper-muted">
-                  {f.participaciones.map((p) => (
-                    <p key={p.fideicomisoId}>
-                      {p.modulos} — {nombreFideicomiso(p.fideicomisoId)}
+                  {f.participaciones.map((p, i) => (
+                    <p key={i}>
+                      {p.modulos} — {p.fideicomiso_nombre}
                     </p>
                   ))}
                 </td>
                 <td className="px-5 py-4">
                   <button
                     type="button"
-                    onClick={() => {
-                      toggleKyc(f.id);
+                    onClick={async () => {
+                      await adminSetKyc(f.id, !f.kyc_verificado);
                       load();
                     }}
                     className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
-                      f.kycVerificado
+                      f.kyc_verificado
                         ? "border-ink-800/20 bg-ink-800/10 text-ink-900"
                         : "border-clay-600/30 bg-clay-600/10 text-clay-600"
                     }`}
                   >
-                    {f.kycVerificado ? (
+                    {f.kyc_verificado ? (
                       <CheckCircle2 size={13} />
                     ) : (
                       <XCircle size={13} />
                     )}
-                    {f.kycVerificado ? "Verificado" : "Pendiente"}
+                    {f.kyc_verificado ? "Verificado" : "Pendiente"}
                   </button>
                 </td>
                 <td className="px-5 py-4">
                   <button
                     type="button"
-                    onClick={() => {
-                      toggleDdjj(f.id);
+                    onClick={async () => {
+                      await adminSetDdjj(f.id, !f.ddjj_firmada);
                       load();
                     }}
                     className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
-                      f.ddjjFirmada
+                      f.ddjj_firmada
                         ? "border-ink-800/20 bg-ink-800/10 text-ink-900"
                         : "border-clay-600/30 bg-clay-600/10 text-clay-600"
                     }`}
                   >
-                    {f.ddjjFirmada ? (
+                    {f.ddjj_firmada ? (
                       <CheckCircle2 size={13} />
                     ) : (
                       <XCircle size={13} />
                     )}
-                    {f.ddjjFirmada ? "Firmada" : "Pendiente"}
+                    {f.ddjj_firmada ? "Firmada" : "Pendiente"}
                   </button>
                 </td>
               </tr>

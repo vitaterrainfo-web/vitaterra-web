@@ -3,7 +3,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, FolderKanban, Users, LogOut } from "lucide-react";
+import {
+  LayoutDashboard,
+  FolderKanban,
+  Users,
+  FileText,
+  ScrollText,
+  LogOut,
+} from "lucide-react";
 import { adminLogout } from "@/app/admin/actions";
 import { ADMIN_EMAIL } from "@/lib/auth/constants";
 
@@ -11,6 +18,8 @@ const NAV = [
   { href: "/admin", label: "Resumen", icon: LayoutDashboard },
   { href: "/admin/fideicomisos", label: "Fideicomisos", icon: FolderKanban },
   { href: "/admin/fiduciantes", label: "Fiduciantes", icon: Users },
+  { href: "/admin/documentos", label: "Documentos", icon: FileText },
+  { href: "/admin/auditoria", label: "Auditoría", icon: ScrollText },
 ];
 
 export function AdminSidebar() {

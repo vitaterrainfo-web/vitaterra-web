@@ -4,18 +4,10 @@ import { useState } from "react";
 import { X, FileSignature } from "lucide-react";
 
 export function FirmarConvenioModal({
-  nombreCompleto,
-  documento,
-  domicilio,
-  email,
-  telefono,
+  fideicomisoId,
   onClose,
 }: {
-  nombreCompleto: string;
-  documento: string;
-  domicilio: string;
-  email: string;
-  telefono: string;
+  fideicomisoId: string;
   onClose: () => void;
 }) {
   const [tramo, setTramo] = useState("Tramo 1");
@@ -36,11 +28,7 @@ export function FirmarConvenioModal({
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          nombreCompleto,
-          documento,
-          domicilio,
-          email,
-          telefono,
+          fideicomisoId,
           tramo,
           montoUsd,
           montoUsdLetras,

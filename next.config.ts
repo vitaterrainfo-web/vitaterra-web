@@ -2,6 +2,13 @@ import type { NextConfig } from "next";
 
 const isDev = process.env.NODE_ENV === "development";
 
+// El panel de fiduciante/admin usa el cliente de Supabase del lado del
+// browser (lib/supabase/client.ts) para leer datos en componentes "use
+// client" -- sin declarar esto en connect-src, el default-src 'self' de
+// abajo bloquea silenciosamente esas llamadas (falla como "Failed to
+// fetch" sin ningún error visible en la respuesta).
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
+
 // Sin 'unsafe-inline' en script-src/style-src esto rompe: Next.js inyecta el
 // payload de React Server Components en un <script> inline en cada página
 // (self.__next_f.push(...)) y varios componentes usan estilos inline
@@ -15,6 +22,7 @@ const cspHeader = `
   style-src 'self' 'unsafe-inline';
   img-src 'self' data:;
   font-src 'self';
+  connect-src 'self' ${supabaseUrl};
   object-src 'none';
   base-uri 'self';
   form-action 'self';

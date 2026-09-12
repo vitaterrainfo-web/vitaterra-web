@@ -5,42 +5,38 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Plus } from "lucide-react";
 import {
-  addActualizacion,
-  getFideicomiso,
-  updateFideicomiso,
-} from "@/lib/admin-store";
-import {
-  formatUsd,
-  type EstadoFideicomiso,
-  type Fideicomiso,
-} from "@/lib/panel-data";
+  adminAgregarActualizacion,
+  adminActualizarFideicomiso,
+  adminGetFideicomiso,
+  type AdminFideicomiso,
+} from "@/app/admin/data-actions";
+import { formatUsd } from "@/lib/panel-data";
 
-const ESTADOS: EstadoFideicomiso[] = [
-  "En desarrollo",
-  "Flota en adquisición",
-  "Finalizado",
-];
+const ESTADOS = ["En desarrollo", "Flota en adquisición", "Finalizado"];
 
 export default function AdminFideicomisoEditPage() {
   const params = useParams<{ id: string }>();
-  const [fideicomiso, setFideicomiso] = useState<Fideicomiso | null>(null);
+  const [fideicomiso, setFideicomiso] = useState<AdminFideicomiso | null>(
+    null
+  );
   const [avance, setAvance] = useState(0);
-  const [estado, setEstado] = useState<EstadoFideicomiso>("En desarrollo");
+  const [estado, setEstado] = useState("En desarrollo");
   const [modulosAdjudicados, setModulosAdjudicados] = useState(0);
   const [resultados, setResultados] = useState(0);
   const [mes, setMes] = useState("");
   const [avanceNota, setAvanceNota] = useState(0);
   const [nota, setNota] = useState("");
   const [saved, setSaved] = useState(false);
+  const [saving, setSaving] = useState(false);
 
-  function load(id: string) {
-    const f = getFideicomiso(id);
+  async function load(id: string) {
+    const f = await adminGetFideicomiso(id);
     if (!f) return;
     setFideicomiso(f);
-    setAvance(f.avanceFisico);
+    setAvance(f.avance_fisico);
     setEstado(f.estado);
-    setModulosAdjudicados(f.modulosAdjudicados);
-    setResultados(f.resultadosDistribuidosUsd);
+    setModulosAdjudicados(f.modulos_adjudicados);
+    setResultados(f.resultados_distribuidos_usd);
   }
 
   useEffect(() => {
@@ -50,7 +46,7 @@ export default function AdminFideicomisoEditPage() {
   if (!fideicomiso) {
     return (
       <div className="p-8">
-        <p className="text-sm text-paper-muted">Fideicomiso no encontrado.</p>
+        <p className="text-sm text-paper-muted">Cargando…</p>
         <Link
           href="/admin/fideicomisos"
           className="mt-4 inline-block text-sm font-semibold text-ink-800"
@@ -61,27 +57,32 @@ export default function AdminFideicomisoEditPage() {
     );
   }
 
-  function handleSave(e: React.FormEvent) {
+  async function handleSave(e: React.FormEvent) {
     e.preventDefault();
-    updateFideicomiso(params.id, {
-      avanceFisico: avance,
-      estado,
-      modulosAdjudicados,
-      resultadosDistribuidosUsd: resultados,
-    });
-    load(params.id);
-    setSaved(true);
-    setTimeout(() => setSaved(false), 2500);
+    setSaving(true);
+    try {
+      await adminActualizarFideicomiso(params.id, {
+        avance_fisico: avance,
+        estado,
+        modulos_adjudicados: modulosAdjudicados,
+        resultados_distribuidos_usd: resultados,
+      });
+      await load(params.id);
+      setSaved(true);
+      setTimeout(() => setSaved(false), 2500);
+    } finally {
+      setSaving(false);
+    }
   }
 
-  function handleAddActualizacion(e: React.FormEvent) {
+  async function handleAddActualizacion(e: React.FormEvent) {
     e.preventDefault();
     if (!mes || !nota) return;
-    addActualizacion(params.id, { mes, avance: avanceNota, nota });
+    await adminAgregarActualizacion(params.id, { mes, avance: avanceNota, nota });
     setMes("");
     setNota("");
     setAvanceNota(0);
-    load(params.id);
+    await load(params.id);
   }
 
   return (
@@ -98,7 +99,7 @@ export default function AdminFideicomisoEditPage() {
         {fideicomiso.nombre}
       </h1>
       <p className="mt-1 text-sm text-paper-muted">
-        {fideicomiso.categoria} — {formatUsd(fideicomiso.presupuestoMeta)}
+        {fideicomiso.categoria} — {formatUsd(fideicomiso.presupuesto_meta)}
       </p>
 
       <div className="mt-8 grid gap-8 lg:grid-cols-2">
@@ -130,7 +131,7 @@ export default function AdminFideicomisoEditPage() {
             </label>
             <select
               value={estado}
-              onChange={(e) => setEstado(e.target.value as EstadoFideicomiso)}
+              onChange={(e) => setEstado(e.target.value)}
               className="mt-1.5 w-full rounded-[2px] border border-paper-line bg-paper-50 px-3.5 py-2.5 text-sm text-ink-900 outline-none focus:border-brass-500"
             >
               {ESTADOS.map((op) => (
@@ -148,7 +149,7 @@ export default function AdminFideicomisoEditPage() {
             <input
               type="number"
               min={0}
-              max={fideicomiso.modulosTotales}
+              max={fideicomiso.modulos_totales}
               value={modulosAdjudicados}
               onChange={(e) => setModulosAdjudicados(Number(e.target.value))}
               className="mt-1.5 w-full rounded-[2px] border border-paper-line bg-paper-50 px-3.5 py-2.5 text-sm text-ink-900 outline-none focus:border-brass-500"
@@ -170,9 +171,10 @@ export default function AdminFideicomisoEditPage() {
 
           <button
             type="submit"
-            className="w-full rounded-[2px] bg-ink-900 py-3 text-sm font-semibold text-paper-50 transition-colors hover:bg-ink-800"
+            disabled={saving}
+            className="w-full rounded-[2px] bg-ink-900 py-3 text-sm font-semibold text-paper-50 transition-colors hover:bg-ink-800 disabled:opacity-60"
           >
-            Guardar cambios
+            {saving ? "Guardando…" : "Guardar cambios"}
           </button>
           {saved && <p className="text-sm text-clay-600">Cambios guardados.</p>}
         </form>

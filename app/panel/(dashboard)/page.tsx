@@ -10,28 +10,30 @@ import {
   ArrowUpRight,
   Info,
 } from "lucide-react";
+import { FIDEICOMISO_SLUGS, formatUsd } from "@/lib/panel-data";
 import {
-  FIDEICOMISOS,
-  FIDUCIANTE_DEMO,
-  FIDEICOMISO_SLUGS,
-  formatUsd,
-} from "@/lib/panel-data";
-import { getCurrentFiduciante } from "@/lib/panel-session";
+  getCurrentFiduciante,
+  getMisParticipaciones,
+  type ParticipacionReal,
+} from "@/lib/panel-session";
 import { LineChart, DonutChart } from "@/components/panel/charts";
 
 export default function PanelInversionesPage() {
-  const [nombre, setNombre] = useState(FIDUCIANTE_DEMO.nombre);
+  const [nombre, setNombre] = useState("");
+  const [participaciones, setParticipaciones] = useState<ParticipacionReal[]>(
+    []
+  );
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     getCurrentFiduciante().then((f) => {
       if (f?.nombre) setNombre(f.nombre);
     });
+    getMisParticipaciones().then((p) => {
+      setParticipaciones(p);
+      setLoaded(true);
+    });
   }, []);
-
-  const participaciones = FIDUCIANTE_DEMO.participaciones.map((p) => ({
-    ...p,
-    fideicomiso: FIDEICOMISOS.find((f) => f.id === p.fideicomisoId)!,
-  }));
 
   const capitalAdjudicado = participaciones.reduce(
     (acc, p) => acc + p.modulos * p.fideicomiso.valorModulo,
@@ -79,6 +81,8 @@ export default function PanelInversionesPage() {
       }))
     )
     .reverse();
+
+  if (!loaded) return null;
 
   return (
     <div>
@@ -165,9 +169,9 @@ export default function PanelInversionesPage() {
             <p className="text-xs text-paper-muted">
               Ciclo: {fideicomiso.ciclo}
             </p>
-            {FIDEICOMISO_SLUGS[fideicomiso.id] && (
+            {FIDEICOMISO_SLUGS[fideicomiso.slug] && (
               <Link
-                href={`/oportunidades/${FIDEICOMISO_SLUGS[fideicomiso.id]}`}
+                href={`/oportunidades/${FIDEICOMISO_SLUGS[fideicomiso.slug]}`}
                 className="group mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-ink-900 hover:text-brass-600"
               >
                 Ver ficha del proyecto

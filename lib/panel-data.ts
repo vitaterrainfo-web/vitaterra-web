@@ -70,59 +70,6 @@ export const FIDEICOMISOS: Fideicomiso[] = [
   },
 ];
 
-export type Fiduciante = {
-  id: string;
-  nombre: string;
-  email: string;
-  telefono: string;
-  domicilio: string;
-  cuit: string;
-  kycVerificado: boolean;
-  ddjjFirmada: boolean;
-  participaciones: { fideicomisoId: string; modulos: number }[];
-};
-
-// Perfil de prueba usado por el panel de cliente (mock, sin backend real).
-export const FIDUCIANTE_DEMO: Fiduciante = {
-  id: "fid-demo-001",
-  nombre: "Hector Gómez",
-  email: "demo@vitaterradesarrollos.com.ar",
-  telefono: "+54 9 11 0000-0000",
-  domicilio: "Av. Libertador 4500, CABA",
-  cuit: "20-00000000-0",
-  kycVerificado: true,
-  ddjjFirmada: true,
-  participaciones: [
-    { fideicomisoId: "agroganadero-vitaterra-i", modulos: 6 },
-  ],
-};
-
-export const FIDUCIANTES_DEMO: Fiduciante[] = [
-  FIDUCIANTE_DEMO,
-  {
-    id: "fid-demo-002",
-    nombre: "María Camila Suárez",
-    email: "camila.suarez@example.com",
-    telefono: "+54 9 341 555-0102",
-    domicilio: "Bv. Oroño 1200, Rosario",
-    cuit: "27-00000001-4",
-    kycVerificado: true,
-    ddjjFirmada: false,
-    participaciones: [{ fideicomisoId: "agroganadero-vitaterra-i", modulos: 3 }],
-  },
-  {
-    id: "fid-demo-003",
-    nombre: "Roberto Daniel Ibarra",
-    email: "r.ibarra@example.com",
-    telefono: "+54 9 261 555-0143",
-    domicilio: "Av. San Martín 800, Mendoza",
-    cuit: "20-00000002-1",
-    kycVerificado: false,
-    ddjjFirmada: false,
-    participaciones: [{ fideicomisoId: "flota-comercial-vitaterra", modulos: 2 }],
-  },
-];
-
 export function formatUsd(n: number) {
   return `USD ${n.toLocaleString("es-AR")}`;
 }

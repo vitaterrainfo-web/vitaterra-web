@@ -3,14 +3,17 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { getFideicomisos } from "@/lib/admin-store";
-import { formatUsd, type Fideicomiso } from "@/lib/panel-data";
+import {
+  adminListFideicomisos,
+  type AdminFideicomiso,
+} from "@/app/admin/data-actions";
+import { formatUsd } from "@/lib/panel-data";
 
 export default function AdminFideicomisosPage() {
-  const [fideicomisos, setFideicomisos] = useState<Fideicomiso[]>([]);
+  const [fideicomisos, setFideicomisos] = useState<AdminFideicomiso[]>([]);
 
   useEffect(() => {
-    setFideicomisos(getFideicomisos());
+    adminListFideicomisos().then(setFideicomisos);
   }, []);
 
   return (
@@ -47,14 +50,14 @@ export default function AdminFideicomisosPage() {
                 </td>
                 <td className="px-5 py-4 text-paper-muted">{f.estado}</td>
                 <td className="px-5 py-4 text-paper-muted">
-                  {f.avanceFisico}%
+                  {f.avance_fisico}%
                 </td>
                 <td className="px-5 py-4 text-paper-muted">
-                  {f.modulosAdjudicados} / {f.modulosTotales} (
-                  {formatUsd(f.modulosAdjudicados * f.valorModulo)})
+                  {f.modulos_adjudicados} / {f.modulos_totales} (
+                  {formatUsd(f.modulos_adjudicados * f.valor_modulo)})
                 </td>
                 <td className="px-5 py-4 text-paper-muted">
-                  {f.fiduciantesActivos}
+                  {f.fiduciantes_activos}
                 </td>
                 <td className="px-5 py-4 text-right">
                   <Link

@@ -1,14 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight, FileSignature } from "lucide-react";
+import { FIDEICOMISO_SLUGS, formatUsd } from "@/lib/panel-data";
 import {
-  FIDEICOMISOS,
-  FIDUCIANTE_DEMO,
-  FIDEICOMISO_SLUGS,
-  formatUsd,
-} from "@/lib/panel-data";
+  getMisParticipaciones,
+  type ParticipacionReal,
+} from "@/lib/panel-session";
 import { FirmarConvenioModal } from "@/components/panel/firmar-convenio-modal";
 
 // Por ahora solo el Agroganadero tiene la plantilla de convenio cargada en ZapSign.
@@ -16,11 +15,19 @@ const FIDEICOMISOS_CON_FIRMA = new Set(["agroganadero-vitaterra-i"]);
 
 export default function PanelFideicomisosPage() {
   const [firmando, setFirmando] = useState<string | null>(null);
+  const [participaciones, setParticipaciones] = useState<ParticipacionReal[]>(
+    []
+  );
+  const [loaded, setLoaded] = useState(false);
 
-  const participaciones = FIDUCIANTE_DEMO.participaciones.map((p) => ({
-    ...p,
-    fideicomiso: FIDEICOMISOS.find((f) => f.id === p.fideicomisoId)!,
-  }));
+  useEffect(() => {
+    getMisParticipaciones().then((p) => {
+      setParticipaciones(p);
+      setLoaded(true);
+    });
+  }, []);
+
+  if (!loaded) return null;
 
   return (
     <div>
@@ -108,9 +115,9 @@ export default function PanelFideicomisosPage() {
             </div>
 
             <div className="mt-6 flex flex-wrap items-center gap-5">
-              {FIDEICOMISO_SLUGS[fideicomiso.id] && (
+              {FIDEICOMISO_SLUGS[fideicomiso.slug] && (
                 <Link
-                  href={`/oportunidades/${FIDEICOMISO_SLUGS[fideicomiso.id]}`}
+                  href={`/oportunidades/${FIDEICOMISO_SLUGS[fideicomiso.slug]}`}
                   className="group inline-flex items-center gap-1.5 text-xs font-semibold text-ink-900 hover:text-brass-600"
                 >
                   Ver ficha del proyecto
@@ -121,7 +128,7 @@ export default function PanelFideicomisosPage() {
                 </Link>
               )}
 
-              {FIDEICOMISOS_CON_FIRMA.has(fideicomiso.id) && (
+              {FIDEICOMISOS_CON_FIRMA.has(fideicomiso.slug) && (
                 <button
                   type="button"
                   onClick={() => setFirmando(fideicomiso.id)}
@@ -138,11 +145,7 @@ export default function PanelFideicomisosPage() {
 
       {firmando && (
         <FirmarConvenioModal
-          nombreCompleto={FIDUCIANTE_DEMO.nombre}
-          documento={FIDUCIANTE_DEMO.cuit}
-          domicilio={FIDUCIANTE_DEMO.domicilio}
-          email={FIDUCIANTE_DEMO.email}
-          telefono={FIDUCIANTE_DEMO.telefono}
+          fideicomisoId={firmando}
           onClose={() => setFirmando(null)}
         />
       )}

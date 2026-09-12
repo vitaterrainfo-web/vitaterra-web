@@ -15,7 +15,6 @@ import {
 } from "lucide-react";
 import { logout } from "@/app/panel/actions";
 import { getCurrentFiduciante } from "@/lib/panel-session";
-import { FIDUCIANTE_DEMO } from "@/lib/panel-data";
 
 const TABS = [
   { href: "/panel", label: "Mis inversiones", icon: Wallet },
@@ -27,8 +26,8 @@ const TABS = [
 
 export function PanelTopNav() {
   const pathname = usePathname();
-  const [nombre, setNombre] = useState(FIDUCIANTE_DEMO.nombre);
-  const [email, setEmail] = useState(FIDUCIANTE_DEMO.email);
+  const [nombre, setNombre] = useState("");
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
     getCurrentFiduciante().then((f) => {

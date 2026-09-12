@@ -116,3 +116,26 @@ export async function crearConvenioDeAdhesion(datos: DatosAdhesion) {
     signUrl: signer?.sign_url,
   };
 }
+
+type ZapSignDocResponse = {
+  status: string;
+  signed_file?: string;
+  original_file?: string;
+};
+
+// Consulta el estado y el archivo final de un documento ya creado -- lo usa
+// el webhook para bajar el PDF una vez que todos firmaron.
+export async function obtenerDocumento(token: string) {
+  const apiToken = getEnv("ZAPSIGN_API_TOKEN");
+
+  const res = await fetch(`${ZAPSIGN_BASE_URL}/docs/${token}/`, {
+    headers: { Authorization: `Bearer ${apiToken}` },
+  });
+
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(`ZapSign respondió ${res.status} al consultar ${token}: ${body}`);
+  }
+
+  return (await res.json()) as ZapSignDocResponse;
+}

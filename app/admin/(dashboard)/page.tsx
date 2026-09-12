@@ -2,24 +2,29 @@
 
 import { useEffect, useState } from "react";
 import { Wallet, TrendingUp, Users, FolderKanban, type LucideIcon } from "lucide-react";
-import { getFideicomisos, getFiduciantes } from "@/lib/admin-store";
-import { formatUsd, type Fideicomiso, type Fiduciante } from "@/lib/panel-data";
+import {
+  adminListFideicomisos,
+  adminListFiduciantes,
+  type AdminFideicomiso,
+  type AdminFiduciante,
+} from "@/app/admin/data-actions";
+import { formatUsd } from "@/lib/panel-data";
 
 export default function AdminResumenPage() {
-  const [fideicomisos, setFideicomisos] = useState<Fideicomiso[]>([]);
-  const [fiduciantes, setFiduciantes] = useState<Fiduciante[]>([]);
+  const [fideicomisos, setFideicomisos] = useState<AdminFideicomiso[]>([]);
+  const [fiduciantes, setFiduciantes] = useState<AdminFiduciante[]>([]);
 
   useEffect(() => {
-    setFideicomisos(getFideicomisos());
-    setFiduciantes(getFiduciantes());
+    adminListFideicomisos().then(setFideicomisos);
+    adminListFiduciantes().then(setFiduciantes);
   }, []);
 
   const capitalAdjudicado = fideicomisos.reduce(
-    (acc, f) => acc + f.modulosAdjudicados * f.valorModulo,
+    (acc, f) => acc + f.modulos_adjudicados * f.valor_modulo,
     0
   );
   const resultadosDistribuidos = fideicomisos.reduce(
-    (acc, f) => acc + f.resultadosDistribuidosUsd,
+    (acc, f) => acc + f.resultados_distribuidos_usd,
     0
   );
   const porEstado = fideicomisos.reduce<Record<string, number>>((acc, f) => {
