@@ -1,66 +1,67 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { Suspense, useActionState } from "react";
+import { useSearchParams } from "next/navigation";
+import { Mail } from "lucide-react";
 import { AuthCard } from "@/components/panel/auth-card";
-import { checkOtp, getStage } from "@/lib/panel-auth";
+import { reenviarConfirmacion, type ResendState } from "./actions";
+
+const initialState: ResendState = { sent: false, error: null };
 
 export default function VerificarPage() {
-  const router = useRouter();
-  const [code, setCode] = useState("");
-  const [error, setError] = useState<string | null>(null);
+  return (
+    <Suspense fallback={null}>
+      <VerificarContent />
+    </Suspense>
+  );
+}
 
-  useEffect(() => {
-    const stage = getStage();
-    if (stage === null) router.replace("/panel/login");
-    if (stage === "kyc" || stage === "done") router.replace("/panel/kyc");
-  }, [router]);
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (checkOtp(code)) {
-      router.push("/panel/kyc");
-    } else {
-      setError("Ingresá el código de 6 dígitos que enviamos a tu email.");
-    }
-  }
+function VerificarContent() {
+  const params = useSearchParams();
+  const email = params.get("email") ?? "";
+  const [state, formAction, pending] = useActionState(
+    reenviarConfirmacion,
+    initialState
+  );
 
   return (
     <AuthCard
-      step="Paso 2 de 3"
-      title="Verificá tu email"
-      subtitle="Te enviamos un código de 6 dígitos a tu casilla de correo registrada."
+      step="Último paso"
+      title="Confirmá tu email"
+      subtitle={
+        email
+          ? `Te enviamos un link de confirmación a ${email}. Abrilo para activar tu cuenta.`
+          : "Te enviamos un link de confirmación a tu casilla de correo."
+      }
     >
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="text-xs font-medium text-paper-muted">
-            Código de verificación
-          </label>
-          <input
-            type="text"
-            inputMode="numeric"
-            maxLength={6}
-            value={code}
-            onChange={(e) => setCode(e.target.value.replace(/\D/g, ""))}
-            className="mt-1.5 w-full rounded-[2px] border border-paper-line bg-paper-50 px-3.5 py-2.5 text-center text-lg tracking-[0.5em] text-ink-900 outline-none focus:border-brass-500"
-            placeholder="000000"
-            required
-          />
-        </div>
-
-        {error && <p className="text-sm text-clay-600">{error}</p>}
-
-        <button
-          type="submit"
-          className="w-full rounded-[2px] bg-ink-900 py-3 text-sm font-semibold text-paper-50 transition-colors hover:bg-ink-800"
-        >
-          Verificar
-        </button>
-
-        <p className="text-xs text-paper-muted">
-          Demo: cualquier código de 6 dígitos es válido (ej. 123456).
+      <div className="flex flex-col items-center gap-4 py-4 text-center">
+        <span className="flex h-12 w-12 items-center justify-center rounded-full border border-paper-line text-brass-600">
+          <Mail size={20} />
+        </span>
+        <p className="text-sm text-paper-muted">
+          Si no lo encontrás, revisá la carpeta de spam. El link te va a
+          llevar directo a tu perfil.
         </p>
-      </form>
+
+        <form action={formAction} className="w-full">
+          <input type="hidden" name="email" value={email} />
+          <button
+            type="submit"
+            disabled={pending || !email}
+            className="mt-2 w-full rounded-[2px] border border-ink-900 py-2.5 text-sm font-semibold text-ink-900 transition-colors hover:bg-ink-900 hover:text-paper-50 disabled:opacity-50"
+          >
+            {pending ? "Reenviando..." : "Reenviar email"}
+          </button>
+          {state.sent && (
+            <p className="mt-2 text-xs text-clay-600">
+              Listo, te lo volvimos a enviar.
+            </p>
+          )}
+          {state.error && (
+            <p className="mt-2 text-xs text-clay-600">{state.error}</p>
+          )}
+        </form>
+      </div>
     </AuthCard>
   );
 }

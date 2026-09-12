@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import {
   Wallet,
   UserRound,
@@ -13,7 +13,8 @@ import {
   LogOut,
   ShieldCheck,
 } from "lucide-react";
-import { logout, getSessionNombre, getSessionEmail } from "@/lib/panel-auth";
+import { logout } from "@/app/panel/actions";
+import { getCurrentFiduciante } from "@/lib/panel-session";
 import { FIDUCIANTE_DEMO } from "@/lib/panel-data";
 
 const TABS = [
@@ -26,13 +27,16 @@ const TABS = [
 
 export function PanelTopNav() {
   const pathname = usePathname();
-  const router = useRouter();
   const [nombre, setNombre] = useState(FIDUCIANTE_DEMO.nombre);
   const [email, setEmail] = useState(FIDUCIANTE_DEMO.email);
 
   useEffect(() => {
-    setNombre(getSessionNombre() ?? FIDUCIANTE_DEMO.nombre);
-    setEmail(getSessionEmail() ?? FIDUCIANTE_DEMO.email);
+    getCurrentFiduciante().then((f) => {
+      if (f) {
+        setNombre(f.nombre);
+        setEmail(f.email);
+      }
+    });
   }, []);
 
   return (
@@ -40,7 +44,7 @@ export function PanelTopNav() {
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-4 md:px-8">
         <Link href="/panel" className="flex items-center gap-2.5">
           <Image
-            src="/images/logo-vitaterra.jpeg"
+            src="/images/logo-vitaterra-badge.jpg"
             alt="Vitaterra"
             width={30}
             height={30}
@@ -74,17 +78,15 @@ export function PanelTopNav() {
             <ShieldCheck size={13} />
             Panel de gestión
           </Link>
-          <button
-            type="button"
-            onClick={() => {
-              logout();
-              router.push("/panel/login");
-            }}
-            className="flex items-center gap-1.5 text-xs font-medium text-clay-600 hover:text-clay-500"
-          >
-            <LogOut size={13} />
-            <span className="hidden sm:inline">Cerrar sesión</span>
-          </button>
+          <form action={logout}>
+            <button
+              type="submit"
+              className="flex items-center gap-1.5 text-xs font-medium text-clay-600 hover:text-clay-500"
+            >
+              <LogOut size={13} />
+              <span className="hidden sm:inline">Cerrar sesión</span>
+            </button>
+          </form>
         </div>
       </div>
 

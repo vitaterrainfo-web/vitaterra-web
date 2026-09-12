@@ -36,7 +36,7 @@ const PROYECTOS = [
   },
   {
     categoria: "Flota Automotor" as Categoria,
-    estado: "Flota en adquisición",
+    estado: "Próximamente",
     titulo: "Fideicomiso Flota Comercial Vita Terra",
     ubicacion: "Operación logística e industrial",
     imagen: "/images/flota/foto-1.jpeg",
@@ -45,7 +45,7 @@ const PROYECTOS = [
     ciclo: "10 años",
     href: "/oportunidades/flota",
     ctaLabel: "Ver proyecto y esquema de participación",
-    disponible: true,
+    disponible: false,
   },
   {
     categoria: "Inmobiliario en Pozo" as Categoria,
@@ -117,17 +117,39 @@ export function Oportunidades() {
               key={p.titulo}
               className="group overflow-hidden rounded-[2px] border border-paper-line bg-paper-50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_50px_-28px_rgba(12,23,18,0.55)]"
             >
-              <div className="relative aspect-[16/10] w-full overflow-hidden">
-                <Image
-                  src={p.imagen}
-                  alt={p.titulo}
-                  fill
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
-                />
-                <span className="absolute left-4 top-4 rounded-[2px] bg-paper-50/95 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-ink-900">
-                  {p.estado}
-                </span>
-              </div>
+              {p.disponible && p.href ? (
+                <Link
+                  href={p.href}
+                  className="relative block aspect-[16/10] w-full overflow-hidden"
+                  aria-label={p.titulo}
+                >
+                  <Image
+                    src={p.imagen}
+                    alt={p.titulo}
+                    fill
+                    className={`object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06] ${
+                      p.estado === "Próximamente" ? "grayscale" : ""
+                    }`}
+                  />
+                  <span className="absolute left-4 top-4 rounded-[2px] bg-paper-50/95 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-ink-900">
+                    {p.estado}
+                  </span>
+                </Link>
+              ) : (
+                <div className="relative aspect-[16/10] w-full overflow-hidden">
+                  <Image
+                    src={p.imagen}
+                    alt={p.titulo}
+                    fill
+                    className={`object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06] ${
+                      p.estado === "Próximamente" ? "grayscale" : ""
+                    }`}
+                  />
+                  <span className="absolute left-4 top-4 rounded-[2px] bg-paper-50/95 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-ink-900">
+                    {p.estado}
+                  </span>
+                </div>
+              )}
 
               <div className="p-6">
                 <div className="flex items-center gap-1.5 text-xs font-medium text-paper-muted">

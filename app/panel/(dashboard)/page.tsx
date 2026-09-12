@@ -2,21 +2,30 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Wallet, TrendingUp, FolderKanban, Gauge, ArrowUpRight } from "lucide-react";
+import {
+  Wallet,
+  TrendingUp,
+  FolderKanban,
+  Gauge,
+  ArrowUpRight,
+  Info,
+} from "lucide-react";
 import {
   FIDEICOMISOS,
   FIDUCIANTE_DEMO,
   FIDEICOMISO_SLUGS,
   formatUsd,
 } from "@/lib/panel-data";
-import { getSessionNombre } from "@/lib/panel-auth";
+import { getCurrentFiduciante } from "@/lib/panel-session";
 import { LineChart, DonutChart } from "@/components/panel/charts";
 
 export default function PanelInversionesPage() {
   const [nombre, setNombre] = useState(FIDUCIANTE_DEMO.nombre);
 
   useEffect(() => {
-    setNombre(getSessionNombre() ?? FIDUCIANTE_DEMO.nombre);
+    getCurrentFiduciante().then((f) => {
+      if (f?.nombre) setNombre(f.nombre);
+    });
   }, []);
 
   const participaciones = FIDUCIANTE_DEMO.participaciones.map((p) => ({
@@ -84,7 +93,17 @@ export default function PanelInversionesPage() {
         Vitaterra.
       </p>
 
-      <div className="mt-8 grid gap-px overflow-hidden rounded-[2px] border border-paper-line bg-paper-line sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-6 flex gap-3 rounded-[2px] border border-brass-500/30 bg-brass-200/15 px-4 py-3.5">
+        <Info size={16} className="mt-0.5 shrink-0 text-brass-600" />
+        <p className="text-xs leading-relaxed text-paper-muted">
+          Los resultados netos que se muestran a continuación dependen del
+          desempeño real de cada proyecto productivo. Los datos históricos y
+          las proyecciones son estimativos y no garantizan resultados
+          futuros.
+        </p>
+      </div>
+
+      <div className="mt-6 grid gap-px overflow-hidden rounded-[2px] border border-paper-line bg-paper-line sm:grid-cols-2 lg:grid-cols-4">
         <StatCard
           icon={Wallet}
           label="Capital adjudicado"

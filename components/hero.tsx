@@ -75,12 +75,12 @@ export function Hero() {
 
       <div className="relative mx-auto w-full max-w-6xl px-6 md:px-8">
         <Image
-          src="/images/logo-vitaterra-mark.png"
+          src="/images/logo-vitaterra-mark-v2.png"
           alt=""
-          width={820}
-          height={820}
+          width={1600}
+          height={1600}
           aria-hidden
-          className="pointer-events-none absolute right-[-60px] top-1/2 w-[420px] max-w-none -translate-y-1/2 opacity-[0.44] brightness-0 sm:w-[540px] md:w-[660px] lg:w-[740px]"
+          className="pointer-events-none absolute right-[-60px] top-1/2 w-[420px] max-w-none -translate-y-1/2 opacity-80 sm:w-[540px] md:w-[660px] lg:w-[740px]"
         />
 
         <Reveal>

@@ -17,7 +17,7 @@ export function AuthCard({
       <div className="relative w-full max-w-md rounded-[2px] border border-paper-line bg-paper-50 p-8 shadow-[0_30px_60px_-30px_rgba(12,23,18,0.35)]">
         <div className="flex items-center gap-2.5">
           <Image
-            src="/images/logo-vitaterra.jpeg"
+            src="/images/logo-vitaterra-badge.jpg"
             alt="Vitaterra"
             width={32}
             height={32}

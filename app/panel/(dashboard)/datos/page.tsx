@@ -2,18 +2,22 @@
 
 import { useEffect, useState } from "react";
 import { ShieldCheck, ShieldAlert } from "lucide-react";
-import { FIDUCIANTE_DEMO } from "@/lib/panel-data";
-import { getSessionNombre, getSessionEmail } from "@/lib/panel-auth";
+import {
+  getCurrentFiduciante,
+  getModulosAdjudicados,
+  type FiducianteActual,
+} from "@/lib/panel-session";
 
 export default function PanelDatosPage() {
-  const f = FIDUCIANTE_DEMO;
-  const [nombre, setNombre] = useState(f.nombre);
-  const [email, setEmail] = useState(f.email);
+  const [f, setF] = useState<FiducianteActual | null>(null);
+  const [modulos, setModulos] = useState(0);
 
   useEffect(() => {
-    setNombre(getSessionNombre() ?? f.nombre);
-    setEmail(getSessionEmail() ?? f.email);
-  }, [f.nombre, f.email]);
+    getCurrentFiduciante().then(setF);
+    getModulosAdjudicados().then(setModulos);
+  }, []);
+
+  if (!f) return null;
 
   return (
     <div>
@@ -26,39 +30,28 @@ export default function PanelDatosPage() {
       </p>
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
-        <Field label="Nombre y apellido" value={nombre} />
-        <Field label="Email" value={email} />
-        <Field label="Teléfono" value={f.telefono} />
-        <Field label="Domicilio" value={f.domicilio} />
-        <Field label="CUIT / CUIL" value={f.cuit} />
-        <Field
-          label="Módulos totales adjudicados"
-          value={String(
-            f.participaciones.reduce((acc, p) => acc + p.modulos, 0)
-          )}
-        />
+        <Field label="Nombre y apellido" value={f.nombre} />
+        <Field label="Email" value={f.email} />
+        <Field label="Teléfono" value={f.telefono ?? "—"} />
+        <Field label="Domicilio" value={f.domicilio ?? "—"} />
+        <Field label="CUIT / CUIL" value={f.cuit ?? "—"} />
+        <Field label="Módulos totales adjudicados" value={String(modulos)} />
       </div>
 
       <div className="mt-8 space-y-3">
         <StatusRow
-          ok={f.kycVerificado}
+          ok={f.kyc_verificado}
           label="Validación de identidad (KYC)"
           okText="Verificada"
           badText="Pendiente"
         />
         <StatusRow
-          ok={f.ddjjFirmada}
+          ok={f.ddjj_firmada}
           label="Declaración jurada de origen lícito de fondos"
           okText="Firmada"
           badText="Pendiente de firma"
         />
       </div>
-
-      <p className="mt-8 text-xs text-paper-muted">
-        Demo: este perfil es de prueba. En producción, estos datos se
-        actualizan a través del circuito de KYC y del back office de
-        Vitaterra.
-      </p>
     </div>
   );
 }

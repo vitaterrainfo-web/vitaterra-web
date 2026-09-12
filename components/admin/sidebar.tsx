@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { LayoutDashboard, FolderKanban, Users, LogOut } from "lucide-react";
-import { adminLogout, ADMIN_EMAIL } from "@/lib/admin-auth";
+import { adminLogout } from "@/app/admin/actions";
+import { ADMIN_EMAIL } from "@/lib/auth/constants";
 
 const NAV = [
   { href: "/admin", label: "Resumen", icon: LayoutDashboard },
@@ -14,13 +15,12 @@ const NAV = [
 
 export function AdminSidebar() {
   const pathname = usePathname();
-  const router = useRouter();
 
   return (
     <aside className="flex h-screen w-64 shrink-0 flex-col border-r border-paper-line bg-paper-50">
       <div className="flex items-center gap-2.5 border-b border-paper-line px-6 py-5">
         <Image
-          src="/images/logo-vitaterra.jpeg"
+          src="/images/logo-vitaterra-badge.jpg"
           alt="Vitaterra"
           width={30}
           height={30}
@@ -56,17 +56,15 @@ export function AdminSidebar() {
 
       <div className="border-t border-paper-line px-4 py-4">
         <p className="truncate text-xs text-paper-muted">{ADMIN_EMAIL}</p>
-        <button
-          type="button"
-          onClick={() => {
-            adminLogout();
-            router.push("/admin/login");
-          }}
-          className="mt-3 flex items-center gap-2 text-xs font-medium text-clay-600 hover:text-clay-500"
-        >
-          <LogOut size={13} />
-          Cerrar sesión
-        </button>
+        <form action={adminLogout}>
+          <button
+            type="submit"
+            className="mt-3 flex items-center gap-2 text-xs font-medium text-clay-600 hover:text-clay-500"
+          >
+            <LogOut size={13} />
+            Cerrar sesión
+          </button>
+        </form>
       </div>
     </aside>
   );

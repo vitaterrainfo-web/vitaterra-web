@@ -1,5 +1,11 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { createServerClient } from "@supabase/ssr";
+import { ADMIN_EMAIL } from "@/lib/auth/constants";
+
+// Rutas de /panel/* que no requieren sesión (login, alta, y la pantalla que
+// pide confirmar el email antes de que exista una sesión real).
+const PANEL_PUBLIC_PATHS = ["/panel/login", "/panel/registro", "/panel/verificar"];
 
 // Rate limit liviano en memoria, sin dependencias externas (Next.js 16 renombró
 // `middleware.ts` a `proxy.ts` / `middleware()` a `proxy()`).
@@ -44,10 +50,79 @@ function pruneExpired(now: number) {
   }
 }
 
-export function proxy(request: NextRequest) {
+// Refresca la sesión de Supabase (el token expira y hay que renovarlo en
+// cada request) y devuelve la response con las cookies actualizadas. Patrón
+// oficial de @supabase/ssr para Next.js -- ver
+// https://supabase.com/docs/guides/auth/server-side/nextjs
+async function updateSupabaseSession(request: NextRequest) {
+  let response = NextResponse.next({ request });
+
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return request.cookies.getAll();
+        },
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value }) =>
+            request.cookies.set(name, value)
+          );
+          response = NextResponse.next({ request });
+          cookiesToSet.forEach(({ name, value, options }) =>
+            response.cookies.set(name, value, options)
+          );
+        },
+      },
+    }
+  );
+
+  // No usar getSession(): getUser() revalida el token contra el servidor de
+  // Supabase en vez de confiar ciegamente en la cookie.
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const { pathname } = request.nextUrl;
+
+  if (pathname.startsWith("/admin") && pathname !== "/admin/login") {
+    if (!user || user.email !== ADMIN_EMAIL) {
+      return NextResponse.redirect(new URL("/admin/login", request.url));
+    }
+  }
+
+  if (
+    pathname.startsWith("/panel") &&
+    !PANEL_PUBLIC_PATHS.some((p) => pathname === p || pathname.startsWith(p + "/"))
+  ) {
+    if (!user) {
+      return NextResponse.redirect(new URL("/panel/login", request.url));
+    }
+
+    // El KYC lo valida el equipo de Grupo Agro desde el panel admin, no es
+    // autoservicio: mientras no esté verificado, solo puede ver /panel/kyc.
+    const { data: fiduciante } = await supabase
+      .from("fiduciantes")
+      .select("kyc_verificado")
+      .eq("auth_user_id", user.id)
+      .maybeSingle();
+
+    if (!fiduciante?.kyc_verificado && pathname !== "/panel/kyc") {
+      return NextResponse.redirect(new URL("/panel/kyc", request.url));
+    }
+    if (fiduciante?.kyc_verificado && pathname === "/panel/kyc") {
+      return NextResponse.redirect(new URL("/panel", request.url));
+    }
+  }
+
+  return response;
+}
+
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const rule = limitFor(pathname);
-  if (!rule) return NextResponse.next();
+  if (!rule) return updateSupabaseSession(request);
 
   const ip =
     request.headers.get("x-forwarded-for")?.split(",")[0].trim() || "unknown";
@@ -59,7 +134,7 @@ export function proxy(request: NextRequest) {
   const entry = hits.get(key);
   if (!entry || now > entry.resetAt) {
     hits.set(key, { count: 1, resetAt: now + WINDOW_MS });
-    return NextResponse.next();
+    return updateSupabaseSession(request);
   }
 
   entry.count += 1;
@@ -70,7 +145,7 @@ export function proxy(request: NextRequest) {
     );
   }
 
-  return NextResponse.next();
+  return updateSupabaseSession(request);
 }
 
 export const config = {

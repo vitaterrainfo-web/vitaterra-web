@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Mail, MapPin } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
+import { FIDEICOMISOS, FIDEICOMISO_SLUGS } from "@/lib/panel-data";
 
 function InstagramIcon() {
   return (
@@ -35,7 +36,7 @@ export function Footer() {
               className="group flex items-center gap-2.5 transition-opacity hover:opacity-80"
             >
               <Image
-                src="/images/logo-vitaterra.jpeg"
+                src="/images/logo-vitaterra-badge.jpg"
                 alt="Vitaterra"
                 width={32}
                 height={32}
@@ -123,6 +124,30 @@ export function Footer() {
                 >
                   {siteConfig.email}
                 </a>
+              </li>
+            </ul>
+
+            <h3 className="mt-8 text-xs font-bold uppercase tracking-widest text-paper-50">
+              Accesos directos
+            </h3>
+            <ul className="mt-4 space-y-2.5">
+              {FIDEICOMISOS.filter((f) => FIDEICOMISO_SLUGS[f.id]).map((f) => (
+                <li key={f.id}>
+                  <Link
+                    href={`/oportunidades/${FIDEICOMISO_SLUGS[f.id]}`}
+                    className="text-sm text-paper-100/60 transition-colors hover:text-brass-400"
+                  >
+                    {f.nombre}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link
+                  href="/panel/registro"
+                  className="text-sm text-paper-100/60 transition-colors hover:text-brass-400"
+                >
+                  Registrarme como fiduciante
+                </Link>
               </li>
             </ul>
           </div>

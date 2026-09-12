@@ -1,15 +1,22 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, FileSignature } from "lucide-react";
 import {
   FIDEICOMISOS,
   FIDUCIANTE_DEMO,
   FIDEICOMISO_SLUGS,
   formatUsd,
 } from "@/lib/panel-data";
+import { FirmarConvenioModal } from "@/components/panel/firmar-convenio-modal";
+
+// Por ahora solo el Agroganadero tiene la plantilla de convenio cargada en ZapSign.
+const FIDEICOMISOS_CON_FIRMA = new Set(["agroganadero-vitaterra-i"]);
 
 export default function PanelFideicomisosPage() {
+  const [firmando, setFirmando] = useState<string | null>(null);
+
   const participaciones = FIDUCIANTE_DEMO.participaciones.map((p) => ({
     ...p,
     fideicomiso: FIDEICOMISOS.find((f) => f.id === p.fideicomisoId)!,
@@ -100,21 +107,45 @@ export default function PanelFideicomisosPage() {
               </ul>
             </div>
 
-            {FIDEICOMISO_SLUGS[fideicomiso.id] && (
-              <Link
-                href={`/oportunidades/${FIDEICOMISO_SLUGS[fideicomiso.id]}`}
-                className="group mt-6 inline-flex items-center gap-1.5 text-xs font-semibold text-ink-900 hover:text-brass-600"
-              >
-                Ver ficha del proyecto
-                <ArrowUpRight
-                  size={12}
-                  className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                />
-              </Link>
-            )}
+            <div className="mt-6 flex flex-wrap items-center gap-5">
+              {FIDEICOMISO_SLUGS[fideicomiso.id] && (
+                <Link
+                  href={`/oportunidades/${FIDEICOMISO_SLUGS[fideicomiso.id]}`}
+                  className="group inline-flex items-center gap-1.5 text-xs font-semibold text-ink-900 hover:text-brass-600"
+                >
+                  Ver ficha del proyecto
+                  <ArrowUpRight
+                    size={12}
+                    className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  />
+                </Link>
+              )}
+
+              {FIDEICOMISOS_CON_FIRMA.has(fideicomiso.id) && (
+                <button
+                  type="button"
+                  onClick={() => setFirmando(fideicomiso.id)}
+                  className="inline-flex items-center gap-1.5 rounded-[2px] bg-brass-500 px-3.5 py-2 text-xs font-semibold text-ink-950 transition-colors hover:bg-brass-400"
+                >
+                  <FileSignature size={13} />
+                  Firmar Convenio de Adhesión
+                </button>
+              )}
+            </div>
           </div>
         ))}
       </div>
+
+      {firmando && (
+        <FirmarConvenioModal
+          nombreCompleto={FIDUCIANTE_DEMO.nombre}
+          documento={FIDUCIANTE_DEMO.cuit}
+          domicilio={FIDUCIANTE_DEMO.domicilio}
+          email={FIDUCIANTE_DEMO.email}
+          telefono={FIDUCIANTE_DEMO.telefono}
+          onClose={() => setFirmando(null)}
+        />
+      )}
     </div>
   );
 }
