@@ -50,7 +50,7 @@ export function Hero() {
   const slide = SLIDES[active];
 
   return (
-    <section className="relative isolate flex min-h-[88vh] items-center overflow-hidden bg-ink-950">
+    <section className="relative isolate flex min-h-[68vh] items-center overflow-hidden bg-ink-950 md:min-h-[74vh]">
       {SLIDES.map((s, i) => (
         <Image
           key={s.src}
