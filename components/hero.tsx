@@ -79,8 +79,9 @@ export function Hero() {
           alt=""
           width={1600}
           height={1600}
+          priority
           aria-hidden
-          className="pointer-events-none absolute right-[-60px] top-1/2 w-[420px] max-w-none -translate-y-1/2 opacity-80 sm:w-[540px] md:w-[660px] lg:w-[740px]"
+          className="pointer-events-none absolute right-[-40px] top-1/2 hidden w-[320px] max-w-none -translate-y-1/2 opacity-80 sm:block sm:w-[420px] md:right-[-60px] md:w-[540px] lg:w-[660px] xl:w-[740px]"
         />
 
         <Reveal>
