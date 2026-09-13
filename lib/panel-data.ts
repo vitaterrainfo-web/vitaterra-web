@@ -74,6 +74,21 @@ export function formatUsd(n: number) {
   return `USD ${n.toLocaleString("es-AR")}`;
 }
 
+const MESES_ES = [
+  "enero", "febrero", "marzo", "abril", "mayo", "junio",
+  "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre",
+];
+
+// Convierte "Septiembre 2026" en un número ordenable cronológicamente.
+// Necesario porque el orden de fila en la base (created_at) no es confiable
+// cuando varias actualizaciones se insertan en el mismo INSERT -- filas con
+// timestamps idénticos no tienen un orden garantizado.
+export function mesOrden(mes: string): number {
+  const [nombre, anio] = mes.trim().toLowerCase().split(" ");
+  const idx = MESES_ES.indexOf(nombre);
+  return Number(anio || 0) * 12 + (idx === -1 ? 0 : idx);
+}
+
 // Ruta pública de la ficha técnica de cada fideicomiso, para enlazar desde el panel.
 export const FIDEICOMISO_SLUGS: Record<string, string> = {
   "agroganadero-vitaterra-i": "agroganadero",

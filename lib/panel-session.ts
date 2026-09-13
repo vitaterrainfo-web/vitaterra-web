@@ -1,6 +1,7 @@
 "use client";
 
 import { createClient } from "@/lib/supabase/client";
+import { mesOrden } from "@/lib/panel-data";
 
 export type FiducianteActual = {
   nombre: string;
@@ -159,7 +160,8 @@ function mapParticipaciones(
         modulosTotales: f!.modulos_totales,
         actualizaciones: (actualizaciones ?? [])
           .filter((a) => a.fideicomiso_id === f!.id)
-          .map((a) => ({ mes: a.mes, avance: a.avance, nota: a.nota })),
+          .map((a) => ({ mes: a.mes, avance: a.avance, nota: a.nota }))
+          .sort((a, b) => mesOrden(a.mes) - mesOrden(b.mes)),
       },
     };
   });

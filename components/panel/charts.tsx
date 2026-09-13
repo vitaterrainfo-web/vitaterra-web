@@ -56,6 +56,37 @@ export function LineChart({
   );
 }
 
+export function BarChart({
+  bars,
+  max,
+}: {
+  bars: { label: string; value: number; display?: string }[];
+  max?: number;
+}) {
+  const computedMax = max ?? Math.max(...bars.map((b) => b.value), 1);
+
+  return (
+    <div className="space-y-4">
+      {bars.map((b) => (
+        <div key={b.label}>
+          <div className="flex items-baseline justify-between gap-3 text-xs">
+            <span className="font-medium text-ink-900">{b.label}</span>
+            <span className="shrink-0 tabular-nums text-paper-muted">
+              {b.display ?? b.value.toLocaleString("es-AR")}
+            </span>
+          </div>
+          <div className="mt-1.5 h-2 w-full overflow-hidden rounded-full bg-paper-200">
+            <div
+              className="h-full rounded-full bg-brass-500 transition-[width] duration-700 ease-out"
+              style={{ width: `${Math.min((b.value / computedMax) * 100, 100)}%` }}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 const DONUT_COLORS = ["#b8952f", "#1a4029", "#2c2c2c", "#d4af6a", "#5c5c58"];
 
 export function DonutChart({

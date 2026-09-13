@@ -3,6 +3,7 @@
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { ADMIN_EMAIL } from "@/lib/auth/constants";
+import { mesOrden } from "@/lib/panel-data";
 
 async function requireAdmin(): Promise<string> {
   const supabase = await createClient();
@@ -74,7 +75,8 @@ export async function adminListFideicomisos(): Promise<AdminFideicomiso[]> {
       fiduciantes_activos: activos.size,
       actualizaciones: (actualizaciones ?? [])
         .filter((a) => a.fideicomiso_id === f.id)
-        .map((a) => ({ mes: a.mes, avance: a.avance, nota: a.nota })),
+        .map((a) => ({ mes: a.mes, avance: a.avance, nota: a.nota }))
+        .sort((a, b) => mesOrden(a.mes) - mesOrden(b.mes)),
     };
   });
 }
