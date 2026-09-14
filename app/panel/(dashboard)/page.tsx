@@ -131,7 +131,7 @@ export default function PanelInversionesPage() {
       </div>
 
       <div className="mt-10 flex items-center justify-between">
-        <h2 className="font-display text-lg font-medium text-ink-900">
+        <h2 className="font-display text-xl font-bold text-ink-900">
           Mis fideicomisos activos
         </h2>
         <Link
@@ -160,7 +160,7 @@ export default function PanelInversionesPage() {
                 {fideicomiso.avanceFisico}%
               </span>
             </div>
-            <p className="mt-1.5 font-display text-base font-medium text-ink-900">
+            <p className="mt-1.5 font-display text-lg font-bold text-ink-900">
               {fideicomiso.nombre}
             </p>
             <p className="mt-3 text-sm text-paper-muted">
@@ -187,7 +187,7 @@ export default function PanelInversionesPage() {
 
       <div className="mt-10 grid gap-4 lg:grid-cols-2">
         <div className="rounded-[2px] border border-paper-line bg-paper-50 p-6">
-          <h3 className="font-display text-base font-medium text-ink-900">
+          <h3 className="font-display text-lg font-bold text-ink-900">
             Evolución del avance físico
           </h3>
           <p className="mt-1 text-xs text-paper-muted">
@@ -205,7 +205,7 @@ export default function PanelInversionesPage() {
         </div>
 
         <div className="rounded-[2px] border border-paper-line bg-paper-50 p-6">
-          <h3 className="font-display text-base font-medium text-ink-900">
+          <h3 className="font-display text-lg font-bold text-ink-900">
             Distribución del capital
           </h3>
           <p className="mt-1 text-xs text-paper-muted">
@@ -224,7 +224,7 @@ export default function PanelInversionesPage() {
       </div>
 
       <div className="mt-10">
-        <h2 className="font-display text-lg font-medium text-ink-900">
+        <h2 className="font-display text-xl font-bold text-ink-900">
           Últimas actualizaciones
         </h2>
         <div className="mt-4 overflow-x-auto rounded-[2px] border border-paper-line bg-paper-50">
@@ -272,7 +272,7 @@ function StatCard({
     <div className="bg-paper-50 p-6">
       <Icon size={18} className="text-brass-600" />
       <p className="mt-4 text-xs font-medium text-paper-muted">{label}</p>
-      <p className="mt-1 font-display text-xl font-medium text-ink-900">
+      <p className="mt-1 font-display text-2xl font-bold text-ink-900">
         {value}
       </p>
     </div>

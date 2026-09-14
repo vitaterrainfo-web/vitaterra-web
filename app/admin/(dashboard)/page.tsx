@@ -170,7 +170,7 @@ export default function AdminResumenPage() {
 
       <Reveal delay={200}>
         <div className="mt-10">
-          <h2 className="font-display text-lg font-medium text-ink-900">
+          <h2 className="font-display text-xl font-bold text-ink-900">
             Avance por fideicomiso
           </h2>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
@@ -184,7 +184,7 @@ export default function AdminResumenPage() {
                     <p className="text-xs font-medium uppercase tracking-wide text-paper-muted">
                       {f.categoria}
                     </p>
-                    <p className="mt-1 font-display text-base font-medium text-ink-900">
+                    <p className="mt-1 font-display text-lg font-bold text-ink-900">
                       {f.nombre}
                     </p>
                   </div>
@@ -211,7 +211,7 @@ export default function AdminResumenPage() {
 
       <Reveal delay={260}>
         <div className="mt-10">
-          <h2 className="font-display text-lg font-medium text-ink-900">
+          <h2 className="font-display text-xl font-bold text-ink-900">
             Estado de los fideicomisos
           </h2>
           <div className="mt-4 grid gap-4 md:grid-cols-3">
@@ -250,7 +250,7 @@ function StatCard({
         <Icon size={16} />
       </span>
       <p className="mt-4 text-xs font-medium text-paper-muted">{label}</p>
-      <p className="mt-1 font-display text-xl font-medium tabular-nums text-ink-900">
+      <p className="mt-1 font-display text-2xl font-bold tabular-nums text-ink-900">
         {value}
       </p>
     </div>
@@ -266,7 +266,7 @@ function ChartCard({
 }) {
   return (
     <div className="h-full rounded-[2px] border border-paper-line bg-paper-50 p-6 transition-shadow hover:shadow-[0_16px_30px_-20px_rgba(12,23,18,0.35)]">
-      <h3 className="font-display text-base font-medium text-ink-900">
+      <h3 className="font-display text-lg font-bold text-ink-900">
         {title}
       </h3>
       <div className="mt-5">{children}</div>
