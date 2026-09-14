@@ -59,7 +59,7 @@ export function FirmarConvenioModal({
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-center gap-2.5">
             <FileSignature size={18} className="text-brass-600" />
-            <h3 className="font-display text-xl font-bold text-ink-900">
+            <h3 className="font-sans text-xl font-bold text-ink-900">
               Firmar Convenio de Adhesión
             </h3>
           </div>

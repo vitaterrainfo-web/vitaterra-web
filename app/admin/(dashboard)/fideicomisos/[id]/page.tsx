@@ -107,7 +107,7 @@ export default function AdminFideicomisoEditPage() {
           onSubmit={handleSave}
           className="space-y-4 rounded-[2px] border border-paper-line bg-paper-50 p-6"
         >
-          <h2 className="font-display text-xl font-bold text-ink-900">
+          <h2 className="font-sans text-xl font-bold text-ink-900">
             Datos generales
           </h2>
 
@@ -181,7 +181,7 @@ export default function AdminFideicomisoEditPage() {
 
         <div className="space-y-6">
           <div className="rounded-[2px] border border-paper-line bg-paper-50 p-6">
-            <h2 className="font-display text-xl font-bold text-ink-900">
+            <h2 className="font-sans text-xl font-bold text-ink-900">
               Agregar actualización mensual
             </h2>
             <form onSubmit={handleAddActualizacion} className="mt-4 space-y-4">
@@ -232,7 +232,7 @@ export default function AdminFideicomisoEditPage() {
           </div>
 
           <div className="rounded-[2px] border border-paper-line bg-paper-50 p-6">
-            <h2 className="font-display text-xl font-bold text-ink-900">
+            <h2 className="font-sans text-xl font-bold text-ink-900">
               Historial de actualizaciones
             </h2>
             <ul className="mt-4 space-y-4">

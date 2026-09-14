@@ -158,7 +158,7 @@ export default function InmobiliarioPage() {
                   <div className="flex h-11 w-11 items-center justify-center rounded-full border border-paper-line text-clay-600 transition-colors group-hover:border-brass-400 group-hover:text-brass-500">
                     <Icon size={20} />
                   </div>
-                  <h3 className="mt-4 font-display text-xl font-bold text-ink-900">
+                  <h3 className="mt-4 font-sans text-xl font-bold text-ink-900">
                     {title}
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-paper-muted">
@@ -290,7 +290,7 @@ export default function InmobiliarioPage() {
               {enviado ? (
                 <div className="mt-10 rounded-[2px] border border-brass-400/30 bg-ink-900/60 p-8 text-center">
                   <CheckCircle2 size={28} className="mx-auto text-brass-400" />
-                  <p className="mt-4 font-display text-xl font-bold text-paper-50">
+                  <p className="mt-4 font-sans text-xl font-bold text-paper-50">
                     ¡Listo!
                   </p>
                   <p className="mt-2 text-sm text-paper-100/70">

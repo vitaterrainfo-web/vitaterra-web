@@ -59,7 +59,7 @@ export default function PanelFideicomisosPage() {
                 <p className="text-xs font-medium uppercase tracking-wide text-paper-muted">
                   {fideicomiso.categoria} · {fideicomiso.estado}
                 </p>
-                <p className="mt-1.5 font-display text-xl font-bold text-ink-900">
+                <p className="mt-1.5 font-sans text-xl font-bold text-ink-900">
                   {fideicomiso.nombre}
                 </p>
               </div>
@@ -159,7 +159,7 @@ function Metric({ label, value }: { label: string; value: string }) {
       <p className="text-[11px] font-medium uppercase tracking-wide text-paper-muted">
         {label}
       </p>
-      <p className="mt-1 font-display text-lg font-bold text-ink-900">
+      <p className="mt-1 font-sans text-lg font-bold text-ink-900">
         {value}
       </p>
     </div>

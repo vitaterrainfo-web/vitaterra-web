@@ -23,7 +23,7 @@ export function AuthCard({
             height={32}
             className="rounded-full object-cover"
           />
-          <span className="font-display text-xl font-bold text-ink-900">
+          <span className="font-sans text-xl font-bold text-ink-900">
             Vita Terra
           </span>
         </div>

@@ -32,7 +32,7 @@ export function HitosTimeline({ hitos }: { hitos: Hito[] }) {
                   <span className="ml-2 text-paper-100/40">Proyectado</span>
                 )}
               </span>
-              <h4 className="mt-1 font-display text-lg font-bold text-paper-50">
+              <h4 className="mt-1 font-sans text-lg font-bold text-paper-50">
                 {hito.titulo}
               </h4>
               <p className="mt-1.5 max-w-xl text-sm leading-relaxed text-paper-100/70">

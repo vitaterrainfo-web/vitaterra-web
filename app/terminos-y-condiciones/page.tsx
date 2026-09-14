@@ -50,7 +50,7 @@ export default function TerminosYCondicionesPage() {
 
           <article className="mt-12 space-y-12">
             <section>
-              <h2 className="font-display text-2xl font-bold text-ink-900">
+              <h2 className="font-sans text-2xl font-bold text-ink-900">
                 1. Naturaleza jurídica de la Plataforma
               </h2>
               <div className="mt-4 space-y-4 text-base leading-8 text-paper-muted">
@@ -80,7 +80,7 @@ export default function TerminosYCondicionesPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-2xl font-bold text-ink-900">
+              <h2 className="font-sans text-2xl font-bold text-ink-900">
                 2. Los Módulos de Adhesión y contratación
               </h2>
               <div className="mt-4 space-y-4 text-base leading-8 text-paper-muted">
@@ -122,7 +122,7 @@ export default function TerminosYCondicionesPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-2xl font-bold text-ink-900">
+              <h2 className="font-sans text-2xl font-bold text-ink-900">
                 3. Proyecciones comerciales y ausencia de rendimiento
                 garantizado
               </h2>
@@ -153,7 +153,7 @@ export default function TerminosYCondicionesPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-2xl font-bold text-ink-900">
+              <h2 className="font-sans text-2xl font-bold text-ink-900">
                 4. Registro, validación de identidad y origen de fondos
               </h2>
               <div className="mt-4 space-y-4 text-base leading-8 text-paper-muted">
@@ -173,7 +173,7 @@ export default function TerminosYCondicionesPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-2xl font-bold text-ink-900">
+              <h2 className="font-sans text-2xl font-bold text-ink-900">
                 5. Validez de la firma electrónica
               </h2>
               <div className="mt-4 space-y-4 text-base leading-8 text-paper-muted">
@@ -193,7 +193,7 @@ export default function TerminosYCondicionesPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-2xl font-bold text-ink-900">
+              <h2 className="font-sans text-2xl font-bold text-ink-900">
                 6. Flujo de fondos y cuentas bancarias
               </h2>
               <div className="mt-4 space-y-4 text-base leading-8 text-paper-muted">
@@ -214,7 +214,7 @@ export default function TerminosYCondicionesPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-2xl font-bold text-ink-900">
+              <h2 className="font-sans text-2xl font-bold text-ink-900">
                 7. Modificaciones y jurisdicción
               </h2>
               <div className="mt-4 space-y-4 text-base leading-8 text-paper-muted">

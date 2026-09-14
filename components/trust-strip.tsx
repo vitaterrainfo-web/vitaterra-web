@@ -30,7 +30,7 @@ export function TrustStrip() {
                 <Icon size={18} />
               </div>
               <div>
-                <h3 className="font-display text-xl font-bold text-ink-900">
+                <h3 className="font-sans text-xl font-bold text-ink-900">
                   {title}
                 </h3>
                 <p className="mt-1.5 text-sm leading-relaxed text-paper-muted">
