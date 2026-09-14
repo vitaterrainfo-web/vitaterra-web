@@ -19,11 +19,11 @@ export default function Home() {
         <Hero />
         <KpisStrip />
         <TrustStrip />
+        <Oportunidades />
         <ComoFunciona />
         <Ventajas />
         <ParaQuien />
         <SeguridadInstitucional />
-        <Oportunidades />
         <Faq />
         <CtaBanner />
       </main>
