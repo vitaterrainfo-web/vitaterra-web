@@ -5,22 +5,22 @@ const STEPS = [
   {
     icon: Search,
     title: "Selección del proyecto productivo",
-    body: "Explorá los diferentes proyectos de la economía real disponibles en la plataforma. Elegí participar en un desarrollo inmobiliario en pozo o sumarte a la explotación de nuestra flota automotor comercial.",
+    body: "Explorá los diferentes proyectos de la economía real disponibles en la plataforma.",
   },
   {
     icon: FileCheck2,
     title: "Adhesión digital y aporte de capital",
-    body: "Elegí la cantidad de Módulos de Adhesión con los que querés participar. Validá tu identidad, completá tu declaración jurada de origen de fondos y firmá electrónicamente tu Acta de Adhesión, 100% digital.",
+    body: "Validá tu identidad, elegí la cantidad de Módulos de Adhesión con los que querés participar, completá el formulario y firmá tu Acta de Adhesión, 100% digital.",
   },
   {
     icon: Building2,
     title: "Gestión profesional del patrimonio separado",
-    body: "Nos encargamos del trabajo duro: ejecución de obras, compra de materiales, seguros y mantenimiento técnico. El capital queda protegido dentro de un patrimonio separado y blindado, ajeno a riesgos externos.",
+    body: "Nos ocupamos de la administración integral, contrataciones y mantenimiento operativo del proyecto.",
   },
   {
     icon: LineChart,
     title: "Rendición de cuentas y distribución de resultados",
-    body: "Seguí la evolución del proyecto en tiempo real desde tu panel. Periódicamente se calculan y distribuyen los resultados netos de la liquidación de la obra o de la explotación comercial de la flota.",
+    body: "Seguí la evolución del proyecto en tiempo real desde tu panel. Periódicamente se calculan y distribuyen los resultados netos.",
   },
 ];
 
