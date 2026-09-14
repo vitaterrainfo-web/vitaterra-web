@@ -36,7 +36,7 @@ export function AdminSidebar() {
           className="rounded-full object-cover"
         />
         <div className="leading-tight">
-          <p className="font-sans text-lg font-bold text-ink-900">
+          <p className="font-subtitle text-lg font-bold text-ink-900">
             Vita Terra
           </p>
           <p className="text-[11px] text-paper-muted">Panel de Grupo Agro SRL</p>

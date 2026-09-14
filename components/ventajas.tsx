@@ -47,7 +47,7 @@ export function Ventajas() {
               <div className="flex h-11 w-11 items-center justify-center rounded-full bg-paper-100 text-clay-600 transition-colors duration-300 group-hover:bg-brass-500 group-hover:text-ink-950">
                 <Icon size={20} />
               </div>
-              <h3 className="mt-4 font-sans text-xl font-bold text-ink-900">
+              <h3 className="mt-4 font-subtitle text-xl font-bold text-ink-900">
                 {title}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-paper-muted">

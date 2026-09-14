@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Manrope, Bodoni_Moda } from "next/font/google";
+import { Manrope, Bodoni_Moda, Instrument_Sans } from "next/font/google";
 import { WhatsappButton } from "@/components/whatsapp-button";
 import "./globals.css";
 
@@ -15,6 +15,11 @@ const bodoniModa = Bodoni_Moda({
   style: ["normal", "italic"],
 });
 
+const instrumentSans = Instrument_Sans({
+  variable: "--font-instrument-sans",
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
   title: "Vita Terra | Fideicomisos privados de economía real",
   description:
@@ -26,7 +31,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="es"
       data-scroll-behavior="smooth"
-      className={`${manrope.variable} ${bodoniModa.variable} antialiased`}
+      className={`${manrope.variable} ${bodoniModa.variable} ${instrumentSans.variable} antialiased`}
     >
       <body className="min-h-screen flex flex-col">
         {children}

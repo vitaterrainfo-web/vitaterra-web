@@ -31,7 +31,7 @@ export default function PoliticaDePrivacidadPage() {
 
           <article className="mt-12 space-y-12">
             <section>
-              <h2 className="font-sans text-2xl font-bold text-ink-900">
+              <h2 className="font-subtitle text-2xl font-bold text-ink-900">
                 1. Compromiso de privacidad y marco legal
               </h2>
               <div className="mt-4 space-y-4 text-base leading-8 text-paper-muted">
@@ -60,7 +60,7 @@ export default function PoliticaDePrivacidadPage() {
             </section>
 
             <section>
-              <h2 className="font-sans text-2xl font-bold text-ink-900">
+              <h2 className="font-subtitle text-2xl font-bold text-ink-900">
                 2. Datos recolectados
               </h2>
               <div className="mt-4 space-y-4 text-base leading-8 text-paper-muted">
@@ -126,7 +126,7 @@ export default function PoliticaDePrivacidadPage() {
             </section>
 
             <section>
-              <h2 className="font-sans text-2xl font-bold text-ink-900">
+              <h2 className="font-subtitle text-2xl font-bold text-ink-900">
                 3. Finalidad del tratamiento de los datos
               </h2>
               <div className="mt-4 space-y-4 text-base leading-8 text-paper-muted">
@@ -172,7 +172,7 @@ export default function PoliticaDePrivacidadPage() {
             </section>
 
             <section>
-              <h2 className="font-sans text-2xl font-bold text-ink-900">
+              <h2 className="font-subtitle text-2xl font-bold text-ink-900">
                 4. Almacenamiento y seguridad de los datos
               </h2>
               <div className="mt-4 space-y-4 text-base leading-8 text-paper-muted">
@@ -196,7 +196,7 @@ export default function PoliticaDePrivacidadPage() {
             </section>
 
             <section>
-              <h2 className="font-sans text-2xl font-bold text-ink-900">
+              <h2 className="font-subtitle text-2xl font-bold text-ink-900">
                 5. Uso de cookies y tecnologías de seguimiento
               </h2>
               <div className="mt-4 space-y-4 text-base leading-8 text-paper-muted">
@@ -215,7 +215,7 @@ export default function PoliticaDePrivacidadPage() {
             </section>
 
             <section>
-              <h2 className="font-sans text-2xl font-bold text-ink-900">
+              <h2 className="font-subtitle text-2xl font-bold text-ink-900">
                 6. Transferencia y comparación de datos
               </h2>
               <div className="mt-4 space-y-4 text-base leading-8 text-paper-muted">
@@ -250,7 +250,7 @@ export default function PoliticaDePrivacidadPage() {
             </section>
 
             <section>
-              <h2 className="font-sans text-2xl font-bold text-ink-900">
+              <h2 className="font-subtitle text-2xl font-bold text-ink-900">
                 7. Derechos del titular de los datos (ARCO)
               </h2>
               <div className="mt-4 space-y-4 text-base leading-8 text-paper-muted">
@@ -285,7 +285,7 @@ export default function PoliticaDePrivacidadPage() {
             </section>
 
             <section>
-              <h2 className="font-sans text-2xl font-bold text-ink-900">
+              <h2 className="font-subtitle text-2xl font-bold text-ink-900">
                 8. Modificaciones a la Política de Privacidad
               </h2>
               <div className="mt-4 space-y-4 text-base leading-8 text-paper-muted">
@@ -307,7 +307,7 @@ export default function PoliticaDePrivacidadPage() {
             </section>
 
             <section>
-              <h2 className="font-sans text-2xl font-bold text-ink-900">
+              <h2 className="font-subtitle text-2xl font-bold text-ink-900">
                 9. Contacto y domicilio especial
               </h2>
               <div className="mt-4 space-y-4 text-base leading-8 text-paper-muted">

@@ -120,7 +120,7 @@ export function SeguridadInstitucional() {
               className="bg-ink-950 p-7 transition-colors duration-300 hover:bg-ink-900"
             >
               <Icon size={20} className="text-brass-400" />
-              <h3 className="mt-4 font-sans text-xl font-bold text-paper-50">
+              <h3 className="mt-4 font-subtitle text-xl font-bold text-paper-50">
                 {title}
               </h3>
               <p className="text-xs font-medium uppercase tracking-wide text-brass-400/70">
@@ -141,7 +141,7 @@ export function SeguridadInstitucional() {
         </div>
 
         <div className="mt-20">
-          <h3 className="font-sans text-2xl font-bold text-paper-50">
+          <h3 className="font-subtitle text-2xl font-bold text-paper-50">
             El proceso de Vita Terra
           </h3>
           <p className="mt-2 max-w-2xl text-sm leading-relaxed text-paper-100/70">
@@ -174,7 +174,7 @@ export function SeguridadInstitucional() {
                         onClick={() => setOpenStep(isOpen ? null : i)}
                         className="flex w-full items-center justify-between gap-4 text-left"
                       >
-                        <h4 className="font-sans text-lg font-bold text-paper-50">
+                        <h4 className="font-subtitle text-lg font-bold text-paper-50">
                           {step.titulo}
                         </h4>
                         <ChevronDown
@@ -215,7 +215,7 @@ export function SeguridadInstitucional() {
         </div>
 
         <div className="mt-16">
-          <h3 className="font-sans text-2xl font-bold text-paper-50">
+          <h3 className="font-subtitle text-2xl font-bold text-paper-50">
             ¿Por qué hacerte socio con nuestro esquema fiduciario?
           </h3>
           <div className="mt-6 grid gap-px overflow-hidden rounded-[2px] border border-paper-50/10 bg-paper-50/10 md:grid-cols-3">
@@ -225,7 +225,7 @@ export function SeguridadInstitucional() {
                 delay={i * 90}
                 className="bg-ink-900/60 p-6 transition-colors duration-300 hover:bg-ink-900"
               >
-                <h4 className="font-sans text-lg font-bold text-brass-400">
+                <h4 className="font-subtitle text-lg font-bold text-brass-400">
                   {b.title}
                 </h4>
                 <p className="mt-2 text-sm leading-relaxed text-paper-100/70">

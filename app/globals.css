@@ -49,6 +49,7 @@
 
   --font-sans: var(--font-manrope);
   --font-display: var(--font-bodoni-moda);
+  --font-subtitle: var(--font-instrument-sans);
 }
 
 html {
@@ -64,6 +65,10 @@ body {
 
 .font-display {
   font-family: var(--font-display), Georgia, serif;
+}
+
+.font-subtitle {
+  font-family: var(--font-subtitle), system-ui, sans-serif;
 }
 
 /* Fine paper grain — subtle, not decorative noise for its own sake */
