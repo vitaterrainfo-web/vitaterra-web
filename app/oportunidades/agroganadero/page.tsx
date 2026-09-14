@@ -268,7 +268,7 @@ export default function AgroganaderoPage() {
                   <div className="flex h-11 w-11 items-center justify-center rounded-full border border-paper-line text-clay-600 transition-colors group-hover:border-brass-400 group-hover:text-brass-500">
                     <Icon size={20} />
                   </div>
-                  <h3 className="mt-4 font-display text-lg font-medium text-ink-900">
+                  <h3 className="mt-4 font-display text-xl font-bold text-ink-900">
                     {title}
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-paper-muted">
@@ -343,7 +343,7 @@ export default function AgroganaderoPage() {
                     <p className="text-xs font-semibold uppercase tracking-wide text-brass-600">
                       {c.subtitulo}
                     </p>
-                    <h3 className="mt-1 font-display text-lg font-medium text-ink-900">
+                    <h3 className="mt-1 font-display text-xl font-bold text-ink-900">
                       {c.periodo}
                     </h3>
                     <ul className="mt-5 space-y-3 border-t border-paper-line pt-5">
@@ -368,7 +368,7 @@ export default function AgroganaderoPage() {
 
             <Reveal delay={120}>
               <div className="mt-14">
-                <h3 className="font-display text-xl font-medium text-ink-900">
+                <h3 className="font-display text-2xl font-bold text-ink-900">
                   Indicadores y expectativa de rendimiento
                 </h3>
                 <p className="mt-2 max-w-3xl text-sm leading-relaxed text-paper-muted">
@@ -495,7 +495,7 @@ export default function AgroganaderoPage() {
               {enviado ? (
                 <div className="mt-10 rounded-[2px] border border-brass-400/30 bg-ink-900/60 p-8 text-center">
                   <CheckCircle2 size={28} className="mx-auto text-brass-400" />
-                  <p className="mt-4 font-display text-lg font-medium text-paper-50">
+                  <p className="mt-4 font-display text-xl font-bold text-paper-50">
                     Solicitud recibida
                   </p>
                   <p className="mt-2 text-sm text-paper-100/70">

@@ -55,7 +55,7 @@ export function ComoFunciona() {
                     </span>
                   </div>
 
-                  <h3 className="mt-5 font-display text-lg font-medium text-ink-900">
+                  <h3 className="mt-5 font-display text-xl font-bold text-ink-900">
                     {title}
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-paper-muted">
