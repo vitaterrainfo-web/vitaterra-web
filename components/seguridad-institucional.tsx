@@ -174,14 +174,9 @@ export function SeguridadInstitucional() {
                         onClick={() => setOpenStep(isOpen ? null : i)}
                         className="flex w-full items-center justify-between gap-4 text-left"
                       >
-                        <span>
-                          <h4 className="font-display text-base font-medium text-paper-50">
-                            {step.titulo}
-                          </h4>
-                          <p className="mt-1.5 max-w-xl text-sm leading-relaxed text-paper-100/70">
-                            {step.body}
-                          </p>
-                        </span>
+                        <h4 className="font-display text-base font-medium text-paper-50">
+                          {step.titulo}
+                        </h4>
                         <ChevronDown
                           size={18}
                           className={`mt-1 shrink-0 text-brass-400 transition-transform ${
@@ -198,7 +193,10 @@ export function SeguridadInstitucional() {
                         }`}
                       >
                         <div className="overflow-hidden">
-                          <div className="relative aspect-[16/9] w-full max-w-xl overflow-hidden rounded-[2px] border border-paper-50/10">
+                          <p className="max-w-xl text-sm leading-relaxed text-paper-100/70">
+                            {step.body}
+                          </p>
+                          <div className="relative mt-4 aspect-[16/9] w-full max-w-xl overflow-hidden rounded-[2px] border border-paper-50/10">
                             <Image
                               src={step.imagen}
                               alt={step.titulo}
