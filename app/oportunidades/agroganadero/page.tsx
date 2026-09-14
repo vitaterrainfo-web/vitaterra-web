@@ -170,7 +170,7 @@ export default function AgroganaderoPage() {
         <section className="relative flex min-h-[70vh] items-end overflow-hidden bg-ink-950">
           <Image
             src="/images/agroganadero/foto-1.jpeg"
-            alt="Fideicomiso Agro Ganadero Vita Terra"
+            alt="Fideicomiso Agroganadero Vita Terra"
             fill
             priority
             className="object-cover opacity-60"
@@ -187,7 +187,7 @@ export default function AgroganaderoPage() {
               Desarrollo Agroganadero
             </p>
             <h1 className="mt-3 max-w-3xl font-display text-4xl font-medium text-paper-50 md:text-5xl">
-              Fideicomiso Privado <span className="italic">Agro Ganadero Vita Terra</span>
+              Fideicomiso Privado <span className="italic">Agroganadero Vita Terra</span>
             </h1>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-paper-100/80">
               Plataforma de desarrollo agro productivo orientada al
@@ -434,7 +434,7 @@ export default function AgroganaderoPage() {
               <div className="mt-10">
                 <Carousel
                   images={GALERIA}
-                  alt="Fideicomiso Agro Ganadero Vita Terra"
+                  alt="Fideicomiso Agroganadero Vita Terra"
                 />
               </div>
             </Reveal>

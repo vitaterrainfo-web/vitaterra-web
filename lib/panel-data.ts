@@ -29,7 +29,7 @@ export type Fideicomiso = {
 export const FIDEICOMISOS: Fideicomiso[] = [
   {
     id: "agroganadero-vitaterra-i",
-    nombre: "Fideicomiso Agro Ganadero Vita Terra",
+    nombre: "Fideicomiso Agroganadero Vita Terra",
     categoria: "Desarrollo Agroganadero",
     estado: "En desarrollo",
     imagen: "/images/agroganadero/foto-1.jpeg",

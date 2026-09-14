@@ -24,7 +24,7 @@ const PROYECTOS = [
   {
     categoria: "Desarrollo Agroganadero" as Categoria,
     estado: "En desarrollo",
-    titulo: "Fideicomiso Agro Ganadero Vita Terra",
+    titulo: "Fideicomiso Agroganadero Vita Terra",
     ubicacion: "Zona rural — Argentina",
     imagen: "/images/agroganadero/foto-1.jpeg",
     presupuesto: "USD 1.000.000",
