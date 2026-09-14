@@ -87,7 +87,7 @@ export default function VitivinicolaPage() {
     <>
       <Header />
       <main>
-        <section className="relative flex min-h-[70vh] items-end overflow-hidden bg-ink-950">
+        <section className="relative flex min-h-[42vh] items-start overflow-hidden bg-ink-950">
           <Image
             src="/images/vitivinicola/foto-1.jpeg"
             alt="Proyecto Vitivinícola Vita Terra"
@@ -96,7 +96,7 @@ export default function VitivinicolaPage() {
             className="object-cover opacity-60"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/60 to-ink-950/10" />
-          <div className="relative mx-auto max-w-6xl px-6 pb-16 pt-40 md:px-8">
+          <div className="relative mx-auto max-w-6xl px-6 pb-10 pt-8 sm:pt-10 md:px-8">
             <Link
               href="/#oportunidades"
               className="text-xs font-medium text-paper-100/70 hover:text-brass-400"

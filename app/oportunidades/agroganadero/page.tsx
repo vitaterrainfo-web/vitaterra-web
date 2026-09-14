@@ -167,7 +167,7 @@ export default function AgroganaderoPage() {
     <>
       <Header />
       <main>
-        <section className="relative flex min-h-[70vh] items-end overflow-hidden bg-ink-950">
+        <section className="relative flex min-h-[42vh] items-start overflow-hidden bg-ink-950">
           <Image
             src="/images/agroganadero/foto-1.jpeg"
             alt="Fideicomiso Agroganadero Vita Terra"
@@ -176,7 +176,7 @@ export default function AgroganaderoPage() {
             className="object-cover opacity-60"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/60 to-ink-950/10" />
-          <div className="relative mx-auto max-w-6xl px-6 pb-16 pt-40 md:px-8">
+          <div className="relative mx-auto max-w-6xl px-6 pb-10 pt-8 sm:pt-10 md:px-8">
             <Link
               href="/#oportunidades"
               className="text-xs font-medium text-paper-100/70 hover:text-brass-400"
@@ -194,30 +194,25 @@ export default function AgroganaderoPage() {
               escalamiento de infraestructura, acopio estratégico de granos y
               producción integral de proteína animal.
             </p>
-            <p className="mt-5 max-w-2xl text-xs text-paper-100/60">
-              Administrado y auditado por Grupo Agro SRL en su carácter de
-              Fiduciario (Código Civil y Comercial de la Nación, Ley N.°
-              26.994).
-            </p>
           </div>
         </section>
 
-        <section className="border-b border-paper-line bg-paper-100 py-14">
+        <section className="border-b border-paper-line bg-paper-100 py-10">
           <div className="mx-auto max-w-6xl px-6 md:px-8">
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              <FichaDato label="Fiduciario / Administrador" valor="Grupo Agro S.R.L." />
-              <FichaDato
-                label="Vehículo legal"
-                valor="Fideicomiso Privado Ordinario (Ley 26.994)"
-              />
-              <FichaDato label="Plazo contractual" valor={fideicomiso.ciclo} />
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
               <FichaDato
                 label="Fondo meta inicial"
                 valor={formatUsd(fideicomiso.presupuestoMeta)}
               />
+              <a
+                href="#adhesion"
+                className="inline-flex w-fit items-center gap-2 rounded-[2px] bg-brass-500 px-6 py-3 text-sm font-semibold text-ink-950 shadow-[0_16px_30px_-14px_rgba(184,149,47,0.6)] transition-colors hover:bg-brass-400"
+              >
+                Adherirse
+              </a>
             </div>
 
-            <div className="mt-8 rounded-[2px] border border-paper-line bg-paper-50 p-6">
+            <div className="mt-6 rounded-[2px] border border-paper-line bg-paper-50 p-6">
               <div className="flex items-center justify-between text-sm">
                 <span className="font-medium text-ink-900">
                   Módulos adjudicados
@@ -474,7 +469,7 @@ export default function AgroganaderoPage() {
           </div>
         </section>
 
-        <section className="bg-ink-950 py-24 text-paper-100">
+        <section id="adhesion" className="scroll-mt-20 bg-ink-950 py-24 text-paper-100">
           <div className="mx-auto max-w-2xl px-6 md:px-8">
             <Reveal>
               <div className="text-center">
