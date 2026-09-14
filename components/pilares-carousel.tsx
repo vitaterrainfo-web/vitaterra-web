@@ -7,7 +7,7 @@ type Pilar = { icon: LucideIcon; title: string; body: string };
 
 export function PilaresCarousel({
   pilares,
-  durationSeconds = 28,
+  durationSeconds = 60,
 }: {
   pilares: Pilar[];
   durationSeconds?: number;
