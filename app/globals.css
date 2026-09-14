@@ -71,6 +71,15 @@ body {
   font-family: var(--font-subtitle), Georgia, serif;
 }
 
+@keyframes pilares-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 /* Fine paper grain — subtle, not decorative noise for its own sake */
 .grain::before {
   content: "";

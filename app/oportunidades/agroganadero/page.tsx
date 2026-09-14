@@ -16,6 +16,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Reveal } from "@/components/reveal";
 import { Carousel } from "@/components/carousel";
+import { PilaresCarousel } from "@/components/pilares-carousel";
 import { HitosTimeline, type Hito } from "@/components/hitos-timeline";
 import { FIDEICOMISOS, formatUsd } from "@/lib/panel-data";
 
@@ -309,24 +310,8 @@ export default function AgroganaderoPage() {
               </div>
             </Reveal>
 
-            <div className="mt-12 grid gap-px overflow-hidden rounded-[2px] border border-paper-line bg-paper-line md:grid-cols-2 lg:grid-cols-3">
-              {PILARES.map(({ icon: Icon, title, body }, i) => (
-                <Reveal
-                  key={title}
-                  delay={i * 80}
-                  className="group bg-paper-50 p-7 transition-colors duration-300 hover:bg-paper-100"
-                >
-                  <div className="flex h-11 w-11 items-center justify-center rounded-full border border-paper-line text-clay-600 transition-colors group-hover:border-brass-400 group-hover:text-brass-500">
-                    <Icon size={20} />
-                  </div>
-                  <h3 className="mt-4 font-subtitle text-xl font-bold text-ink-900">
-                    {title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-paper-muted">
-                    {body}
-                  </p>
-                </Reveal>
-              ))}
+            <div className="mt-12">
+              <PilaresCarousel pilares={PILARES} />
             </div>
           </div>
         </section>
