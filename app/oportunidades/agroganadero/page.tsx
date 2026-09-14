@@ -16,7 +16,6 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Reveal } from "@/components/reveal";
 import { Carousel } from "@/components/carousel";
-import { MapEmbed } from "@/components/map-embed";
 import { HitosTimeline, type Hito } from "@/components/hitos-timeline";
 import { FIDEICOMISOS, formatUsd } from "@/lib/panel-data";
 
@@ -237,6 +236,63 @@ export default function AgroganaderoPage() {
                 </span>
               </div>
             </div>
+
+            <div className="mt-10">
+              <h3 className="font-subtitle text-2xl font-bold text-ink-900">
+                Indicadores y expectativa de rendimiento
+              </h3>
+              <p className="mt-2 max-w-3xl text-sm leading-relaxed text-paper-muted">
+                Los valores expuestos representan proyecciones basadas en el
+                plan de producción y eficiencias históricas de la actividad
+                en la región.
+              </p>
+              <div className="mt-6 overflow-x-auto rounded-[2px] border border-paper-line">
+                <table className="w-full min-w-[520px] text-left text-sm">
+                  <thead>
+                    <tr className="border-b border-paper-line bg-paper-200 text-xs uppercase tracking-wide text-paper-muted">
+                      <th className="px-5 py-3 font-medium">Período</th>
+                      <th className="px-5 py-3 font-medium">
+                        Rendimiento objetivo proyectado
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {RENDIMIENTO.map((r) => (
+                      <tr
+                        key={r.periodo}
+                        className="border-b border-paper-line bg-paper-50 last:border-0"
+                      >
+                        <td className="px-5 py-4 font-medium text-ink-900">
+                          {r.periodo}
+                        </td>
+                        <td className="px-5 py-4 text-paper-muted">
+                          {r.rango}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="mt-4 flex items-start gap-2 text-xs leading-relaxed text-paper-muted">
+                <CheckCircle2
+                  size={14}
+                  className="mt-0.5 shrink-0 text-clay-600"
+                />
+                Respaldo en economía real: el fiduciante no ingresa a un
+                producto financiero abstracto, sino que participa
+                proporcionalmente de un fideicomiso respaldado por tierras,
+                biomasa en crecimiento e infraestructura agroindustrial.
+              </p>
+            </div>
+
+            <div className="mt-10 grid gap-6 sm:grid-cols-3">
+              <FichaDato label="Fiduciario / Administrador" valor="Grupo Agro S.R.L." />
+              <FichaDato
+                label="Vehículo legal"
+                valor="Fideicomiso Privado Ordinario (Ley 26.994)"
+              />
+              <FichaDato label="Plazo contractual" valor={fideicomiso.ciclo} />
+            </div>
           </div>
         </section>
 
@@ -294,30 +350,6 @@ export default function AgroganaderoPage() {
           </div>
         </section>
 
-        <section className="bg-paper-100 py-24">
-          <div className="mx-auto max-w-6xl px-6 md:px-8">
-            <Reveal>
-              <div className="max-w-2xl">
-                <span className="text-xs font-semibold uppercase tracking-widest text-brass-600">
-                  Ubicación
-                </span>
-                <h2 className="mt-3 font-display text-3xl font-medium text-ink-900 md:text-4xl">
-                  Dónde está el proyecto
-                </h2>
-              </div>
-            </Reveal>
-            <Reveal delay={80}>
-              <div className="mt-10">
-                <MapEmbed
-                  lat={-33.8961}
-                  lon={-60.5695}
-                  label="Zona rural — Pergamino, Buenos Aires"
-                />
-              </div>
-            </Reveal>
-          </div>
-        </section>
-
         <section className="bg-paper-50 py-24">
           <div className="mx-auto max-w-6xl px-6 md:px-8">
             <Reveal>
@@ -360,56 +392,6 @@ export default function AgroganaderoPage() {
                 </Reveal>
               ))}
             </div>
-
-            <Reveal delay={120}>
-              <div className="mt-14">
-                <h3 className="font-subtitle text-2xl font-bold text-ink-900">
-                  Indicadores y expectativa de rendimiento
-                </h3>
-                <p className="mt-2 max-w-3xl text-sm leading-relaxed text-paper-muted">
-                  Los valores expuestos representan proyecciones basadas en el
-                  plan de producción y eficiencias históricas de la actividad
-                  en la región.
-                </p>
-                <div className="mt-6 overflow-x-auto rounded-[2px] border border-paper-line">
-                  <table className="w-full min-w-[520px] text-left text-sm">
-                    <thead>
-                      <tr className="border-b border-paper-line bg-paper-100 text-xs uppercase tracking-wide text-paper-muted">
-                        <th className="px-5 py-3 font-medium">Período</th>
-                        <th className="px-5 py-3 font-medium">
-                          Rendimiento objetivo proyectado
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {RENDIMIENTO.map((r) => (
-                        <tr
-                          key={r.periodo}
-                          className="border-b border-paper-line bg-paper-50 last:border-0"
-                        >
-                          <td className="px-5 py-4 font-medium text-ink-900">
-                            {r.periodo}
-                          </td>
-                          <td className="px-5 py-4 text-paper-muted">
-                            {r.rango}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-                <p className="mt-4 flex items-start gap-2 text-xs leading-relaxed text-paper-muted">
-                  <CheckCircle2
-                    size={14}
-                    className="mt-0.5 shrink-0 text-clay-600"
-                  />
-                  Respaldo en economía real: el fiduciante no ingresa a un
-                  producto financiero abstracto, sino que participa
-                  proporcionalmente de un fideicomiso respaldado por tierras,
-                  biomasa en crecimiento e infraestructura agroindustrial.
-                </p>
-              </div>
-            </Reveal>
           </div>
         </section>
 

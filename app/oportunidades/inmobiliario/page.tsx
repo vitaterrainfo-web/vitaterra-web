@@ -16,7 +16,6 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Reveal } from "@/components/reveal";
 import { Carousel } from "@/components/carousel";
-import { MapEmbed } from "@/components/map-embed";
 import { HitosTimeline, type Hito } from "@/components/hitos-timeline";
 
 const PILARES = [
@@ -186,30 +185,6 @@ export default function InmobiliarioPage() {
             <div className="mt-12">
               <HitosTimeline hitos={HITOS} />
             </div>
-          </div>
-        </section>
-
-        <section className="bg-paper-50 py-24">
-          <div className="mx-auto max-w-6xl px-6 md:px-8">
-            <Reveal>
-              <div className="max-w-2xl">
-                <span className="text-xs font-semibold uppercase tracking-widest text-brass-600">
-                  Ubicación
-                </span>
-                <h2 className="mt-3 font-display text-3xl font-medium text-ink-900 md:text-4xl">
-                  Dónde va a estar el proyecto
-                </h2>
-              </div>
-            </Reveal>
-            <Reveal delay={80}>
-              <div className="mt-10">
-                <MapEmbed
-                  lat={-32.9468}
-                  lon={-60.6393}
-                  label="Zona de expansión residencial — Rosario, Santa Fe"
-                />
-              </div>
-            </Reveal>
           </div>
         </section>
 
